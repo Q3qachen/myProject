@@ -84,7 +84,7 @@ class UserController
      */
     public function edit(Request $request)
     {
-        // 增加真实姓名和身份证号
+        // 增加真实姓名和身份证号 ceshi
         list($avatar, $nickname, $card_id, $real_name) = $request->postMore([
             ['avatar', ''],
             ['nickname', ''],
