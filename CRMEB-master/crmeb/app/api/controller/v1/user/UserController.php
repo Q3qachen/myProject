@@ -98,11 +98,6 @@ class UserController
 
         $uid = (int)$request->uid();
 
-        validate(\app\validate\user\UserValidate::class)->check([
-            'card_id' => $card_id,
-            'real_name' => $real_name
-        ]);
-
         if ($this->services->eidtNickname($uid, [
             'avatar' => $avatar,
             'nickname' => $nickname,
