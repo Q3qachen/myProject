@@ -1,0 +1,18 @@
+<div class="sidebar-toggle"><i class="fa fa-bars"></i></div>
+<div class="sidenav" id="sidebar-nav">
+    {:hook('user_sidenav_before')}
+    <ul class="list-group">
+        <li class="list-group-heading">{:__('Member center')}</li>
+        <li class="list-group-item {:check_nav_active('user/index')}"> <a href="{:url('user/index')}"><i class="fa fa-user-circle fa-fw"></i> {:__('User center')}</a> </li>
+        <li class="list-group-item {:check_nav_active('user/profile')}"> <a href="{:url('user/profile')}"><i class="fa fa-user-o fa-fw"></i> {:__('Profile')}</a> </li>
+        <li class="list-group-item {:check_nav_active('user/changepwd')}"> <a href="{:url('user/changepwd')}"><i class="fa fa-key fa-fw"></i> {:__('Change password')}</a> </li>
+        <li class="list-group-item {:check_nav_active('user/logout')}"> <a href="{:url('user/logout')}"><i class="fa fa-sign-out fa-fw"></i> {:__('Sign out')}</a> </li>
+    </ul>
+    <ul class="list-group">
+        <li class="list-group-heading">{:__('应用')}</li>
+        <li class="list-group-item"> <a href="http://cons.lncbe.com/index/baoguo/index.html"><i class="fa fa-shopping-bag fa-fw"></i> {:__('添加包裹')}</a> </li>
+        <li class="list-group-item"> <a href="http://cons.lncbe.com/index/yunfei/index.html"><i class="fa fa-calculator fa-fw"></i> {:__('运费测算')}</a> </li>
+        <li class="list-group-item"> <a href="http://cons.lncbe.com/index/dingdan/index.html"><i class="fa fa-reorder fa-fw"></i> {:__('订单列表')}</a> </li>
+    </ul>
+    {:hook('user_sidenav_after')}
+</div>

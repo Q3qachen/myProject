@@ -1,0 +1,681 @@
+<style>
+    .panel-post {
+        position: relative;
+    }
+
+    .btn-post {
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+    }
+
+    .img-border {
+        border-radius: 3px;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .embed-responsive img {
+        position: absolute;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .channel-list li a {
+        color: #2c3e50;
+    }
+
+    .channel-list li.active a, .channel-list li a:hover {
+        color: #3c8dbc;
+    }
+
+    .channel-list li.active a {
+        font-weight: bold;
+    }
+
+    .panel-user h4 {
+        font-weight: normal;
+        font-size: 14px;
+    }
+
+
+    .menu {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 30px 0;
+        width: 100%;
+    }
+
+    .menu li {
+        display: inline-block;
+        padding: 10px 15px;
+        background-color: #20bae8;
+        cursor: pointer;
+        /*list-style-type: none;*/
+        background-color: #fff;
+    }
+
+    .menu li button {
+        border: none;
+        outline: none;
+        background-color: #fff;
+    }
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .order-container {
+        width: 100%;
+        margin: 10px auto;
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .order-header {
+        text-align: center;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    .order-table {
+        width: 100%;
+        margin-top: 10px;
+        border-collapse: collapse;
+    }
+    .order-table th, .order-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    .order-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    .action-buttons {
+        text-align: right;
+    }
+    .action-buttons button {
+    align-items: center;
+ background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+ border: 0;
+ border-radius: 8px;
+ box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+ box-sizing: border-box;
+ color: #FFFFFF;
+ display: flex;
+ font-family: Phantomsans, sans-serif;
+ font-size: 18px;
+ justify-content: center;
+ line-height: 1em;
+ max-width: 100%;
+ min-width: 140px;
+ padding: 3px;
+ text-decoration: none;
+ user-select: none;
+ -webkit-user-select: none;
+ touch-action: manipulation;
+ white-space: nowrap;
+ cursor: pointer;
+ transition: all .3s;
+    }
+    .action-buttons button:hover {
+        background-color: #0056b3;
+    }
+    .text-center img{
+        width: 135px;
+    }
+    .col-md-9s p{
+        padding-left: 1px;
+        padding-right: 1px;
+        display:inline-block;
+    }
+    .col-md-9s p left{
+        float:left
+    }
+
+    .col-md-9s p renght{
+        float:right;
+    }
+
+    .divider {
+        border-top: 1px solid #ccc;
+        margin: 20px 0 20px 0;
+    }
+    
+     .menu button:hover::after {
+            content: '';
+            width: 100%; /* 设置伪元素的宽度 */
+            height: 1px;
+            display: block;
+            margin: 0 auto;
+            border-bottom: 2px solid #66a8ef;
+       }
+       
+      /*#alls {*/
+          
+      /*      color: #66a8ef;*/
+            
+      /*  }*/
+     
+      .menu button:hover { color: #66a8ef}
+    
+    .action-buttonss {
+        text-align: right;
+    }
+    .action-buttonss a {
+        padding: 1px 1px;
+        background-color: #66a8ef;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .action-buttonss a:hover {
+        background-color: #0056b3;
+    }
+    .text-muteds{
+        color: red;
+    }
+
+button:active,
+button:hover {
+ outline: 0;
+}
+
+
+
+button:active {
+ transform: scale(0.9);
+}
+.panels-body{
+    padding: 6px;
+}
+
+/*添加包裹*/
+.modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        
+         .modal-content {
+            background-color: #fefefe;
+            margin: 40% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    .contrss{
+     box-shadow: none;
+     width: 75%;
+    height: 33px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #555555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+        border-color: #d2d6de;
+   }
+   .contrss:focus {
+    border-color: #66afe9; 
+    border-radius: 15px;
+    outline: none; /* 去除轮廓 */
+}
+      
+      .uni-button {
+    
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 2.55555556;
+    border-radius: 8px;
+    -webkit-tap-highlight-color: transparent;
+    overflow: hidden;
+    color: #000;
+    background-color: #f8f8f8;
+    cursor: pointer;
+   }
+      
+</style>
+<div class="container mt-20">
+    <div id="content-container">
+        <div class="row">
+           
+            <div style='position: relative;
+    min-height: 1px;
+    padding-left: 10px;
+    padding-right: 10px;'>
+                <div class="panel panel-default panel-user">
+                    <div class="panels-body">
+                        <div class="panel-post">
+                            <h2 class="page-header">订单列表</h2>
+                        </div>
+
+                        <menu class="menu" id="order-status" type="toolbar">
+                            <li><button  class="button button1"  id='alls' value="all">全&nbsp;&nbsp;&nbsp;部<span style='color:red'>({$statusall})</span></button></li>
+                            <li><button  class="button button1" value="0">未入库<span style='color:red'>({$status0})</span></button></li>
+                            <li><button  class="button button2" value="1">待打包<span style='color:red'>({$status1})</span></button></li>
+                            <li><button  class="button button3" value="2">待付款<span style='color:red'>({$status2})</span></button></li>
+                            <li><button  class="button button3" value="4">已付款<span style='color:red'>({$status4})</span></button></li>
+                            <li><button  class="button button4" value="3">已发货<span style='color:red'>({$status3})</span></button></li>
+                        </menu>
+                      <div id='txtHint'>
+                            {volist name='orderList' id='item'}
+                            <div class="row">
+                                <div class="col-md-9s" style='margin-left:8px;'>
+                                    <p id="orderid" class="renght"><input   name="orderid" type="checkbox"  value="{$item.id}"/></p>
+                                    <p class="left">接货运单号：{$item.ordersn}</p>
+                                    <div class="">包裹号：{$item.out_trade_no}</div>
+                                </div>
+                               
+                                <!--</div>-->
+                                <div class="col-md-9s" style='margin-left:8px;'>
+
+                                     
+                                    {switch name="item.status"}
+                                    {case value="0"} <p class="text-muteds">订单状态：未入库</p>{/case}
+                                    {case value="1"}<p class="text-muteds">订单状态：待打包</p>{/case}
+                                    {case value="2"}<p class="text-muteds">订单状态：待付款</p>{/case}
+                                    {case value="4"}<p class="text-muteds">订单状态：已支付</p>{/case}
+                                    {default /}<p class="text-muteds">订单状态：已发货</p>
+                                    {/switch}
+                                  
+                                    <p class="text-muted">{$item.time}</p>
+                                </div>
+                            </div>
+                                    <div  class='action-buttonss'>
+                                     {if condition="$item.status eq '0'"} 
+                                     <a  style='background-color: #c2c7cd;padding:3px' id='action-buttonss' href="{:url('details/cancel',['id'=>$item['id']])}">取消订单</a>&nbsp;
+                                     {/if} 
+                                     
+                                      {if condition="($item.status eq 0) OR ($item.status eq 1)"} 
+                                       <input type='hidden' id='{$item.out_trade_no}'  value="{$item.out_trade_no}" />
+                                      <a  style='background-color: #8FBC8F;padding:3px'    data-target="{$item.out_trade_no}" id='openModal'>添加包裹</a>&nbsp;
+                                     {/if}
+                                     <a href="{:url('details/index',['out_trade_no'=>$item['out_trade_no']])}" style="padding:3px">查看订单</a>
+                                    </div>
+                            <hr>
+                            {/volist}
+                            </div>
+                        </div>
+                        
+                        <div id="myModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close" style=" align-items: center;">&times;</span>
+                                <p>添加包裹前确认订单信息</p>
+                                 
+                                    <input type="text" id="trackingNumber"   class="contrss" style="border-radius: 15px; " placeholder="输入运单号"/> 
+                                    
+                                    <button class="uni-button"  onclick="addTrackingNumber()">+</button>
+                                    
+                                     <div  style="display:none" id="trade_no" class="trade_no"></div>
+                                     <textarea  type="text"  id="ordersn" style="
+                                   border-radius: 15px; margin:8px 0" class="form-control" placeholder="全部运单号" name="ordersn"></textarea>
+                                    <input  type="text" name="notes" id="notes" value="" class="form-control" style="border-radius: 15px;"  placeholder="商品备注"/>
+                                    
+                                 <div style="display: flex;justify-content: center;align-items: center;margin-top:15px"><button onclick="recharge()"  class="pretty-btn">提交包裹</button></div>
+                            </div>
+                        </div>
+                        <!--分页-->
+                        <!--<div class="result">-->
+                        <!--    {$orderList->render()}-->
+                        <!-- </div>-->
+                     
+                      </div>
+                       <!--一起打包发货申请-->
+                         <div id="action-buttons" class="action-buttons"></div>
+                       </div>
+                    </div>
+                </div>
+  </div>
+
+
+
+
+<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+<script>
+        // 可以添加一些JavaScript代码来处理菜单项的点击事件
+        const menu = document.getElementById('order-status');
+        menu.addEventListener('click', function(event) {
+        if (event.target.localName === 'button') {
+            
+        // 处理点击事件，例如更新订单状态等
+            $.ajax({
+                type:"POST",
+                url:"dingdan/list",//提交数据接口
+                data:{status:event.target.value},
+                dataType:"JSON",
+                success:function (res) {
+                    if(res.data == ''){
+                        $("#txtHint").html("<div></div>");
+                       
+                    }
+                    if(res.data == ''||res.data[0].status!=2){
+                         $("#action-buttons").html("<div></div>");
+                    }
+                    
+                    var str = "";//把数据组装起来
+                    var strs = "";
+                    var id = "";
+                    var ordersn="";
+                    var out_trade_no="";
+                    for (var i=0; i<res.data.length; i++) {
+
+                        switch (res.data[i].status){
+                          
+                            case 0:
+                                res.data[i].status ="<span>未入库</span>";
+                                break;
+                            case 1:
+                                res.data[i].status ="<span>待打包</span>";
+                                break;
+                            case 2:
+                                res.data[i].status ="<span>待付款</span>";
+                                  break;
+                            case 4:
+                                res.data[i].status ="<span>已支付</span>";
+                                
+                                break;
+                            case 3:
+                                res.data[i].status ="<span>已发货</span>";
+                                break;
+                        }
+                    
+                        id = res.data[i].id;
+                        ordersn = res.data[i].ordersn;
+                         out_trade_no = res.data[i].out_trade_no;  
+                        str+= "<div class='row'>" +
+                                  "<div class='col-md-9s'  style='margin-left:8px;'>"+
+                                  " <p class='renght' id='orderid'><input  name='orderid'  type='checkbox'  value="+ id +"></p>"+
+                                  " <p class='left'>接货运单号："+ res.data[i].ordersn +"</p>"+
+                                  " <div>包裹号："+  res.data[i].out_trade_no +"</div>"+
+                                "</div>"+
+                             
+                                "<div class='col-md-9s'  style='margin-left:8px;'>" +
+                                  
+                                    "<p class='text-muteds'>订单状态：" + res.data[i].status + "</p>" +
+                                 
+                                   "&nbsp;<p class='text-muted'>" + res.data[i].time + "</p>" +
+                                "</div>" +
+                            "</div>"+
+                                  "<div  class='action-buttonss'>";
+                                   
+                                      if(res.data[i].status == '<span>未入库</span>'){
+                                          str+=  "<a style='background-color: #c2c7cd;padding:3px' href='{:url('/index/details/cancel/id/"+id+"')}'>取消订单</a>&nbsp;";
+                                      }
+                                    //   if(res.data[i].status == '<span>未入库</span>' || res.data[i].status == '<span>待打包</span>'){
+                                    //   str+=   "<input type='hidden' id='out_trade_no' value=" +res.data[i].out_trade_no + "></input>"+
+                                    //   "<a style='background-color: #8FBC8F;padding:3px' onclick='openModals()' id='openModals'>添加包裹</a>&nbsp;";
+                                    //      }
+                                     str+=    "<a href='{:url('/index/details/index/out_trade_no/"+out_trade_no+"')}' style='padding:3px'>查看订单</a>"+
+                                    "</div>"+
+                             "<hr>";
+                             
+                      
+                          
+                         $("#txtHint").html(str);//把拼好的样式填到指定的位置，一个Ajax的表格刷新功能就完成了
+
+                    }
+                    
+                  //  一起打包发货申请
+                    if(event.target.value==1){
+                        strs= "<button onclick='submitForm()'><span>申请打包发货</span></button>";
+                            $("#action-buttons").html(strs);            
+                    }
+                   
+                 
+                }
+                
+            
+            });
+        }
+        
+      
+        });
+        
+            
+               // 获取所有 a 标签并添加事件监听
+          document.addEventListener('DOMContentLoaded', function() {
+              const buttons = document.querySelectorAll('#openModal');
+              buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                 const currentInput = this.previousElementSibling;
+                  console.log(currentInput.value);
+                  if(!currentInput.value){
+                      return; 
+                  }
+                    strs= "<input  id='trade_nos' value="+currentInput.value +"></input>";
+                      $("#trade_no").html(strs); 
+                         var modal = $('#myModal');
+                         var span = $('.close');
+                         var btn = $('#openModal');
+                          
+                        modal.css('display', 'block'); // 或者使用 modal.show(); 如果喜欢使用jQuery方法的话。
+                        
+               
+                    
+                            // 当用户点击 <span> (x), 关闭模态框
+                    span.on('click', function(){
+                        modal.css('display', 'none'); // 或者使用 modal.hide(); 如果喜欢使用jQuery方法的话。
+                    });
+            
+                    // 当用户点击模态框外的区域，关闭模态框（可选）
+                    window.onclick = function(event) {
+                        if (event.target == modal[0]) { // 注意这里是modal[0]，因为modal是一个jQuery对象，而我们比较的是DOM元素。
+                            modal.css('display', 'none'); // 或者使用 modal.hide(); 如果喜欢使用jQuery方法的话。
+                        }
+                    }
+                });
+              });
+            });
+            
+            
+        
+
+
+    function openModals() {
+        
+     
+        
+        
+             //   获取所有 a 标签并添加事件监听  暂时首次进不去方法先隐藏了
+            // const buttons = document.querySelectorAll('#openModals');
+            // buttons.forEach(button => {
+            //   button.addEventListener('click', function (e) {
+                  
+            //       // 找到离当前 a 最近的兄弟节点 input
+            //         const currentInput = this.previousElementSibling;
+            //         if(!currentInput.value){
+            //           return; 
+            //           }
+            //          console.log(currentInput.value);
+            //           strs= "<input  id='trade_nos' value="+currentInput.value +"></input>";
+            //           $("#trade_no").html(strs); 
+            //     });
+            // });
+            
+            
+        
+             var modal = $('#myModal');
+             var span = $('.close');
+             var btn = $('#openModal');
+              
+            modal.css('display', 'block'); // 或者使用 modal.show(); 如果喜欢使用jQuery方法的话。
+           
+        
+                // 当用户点击 <span> (x), 关闭模态框
+        span.on('click', function(){
+            modal.css('display', 'none'); // 或者使用 modal.hide(); 如果喜欢使用jQuery方法的话。
+        });
+
+        // 当用户点击模态框外的区域，关闭模态框（可选）
+        window.onclick = function(event) {
+            if (event.target == modal[0]) { // 注意这里是modal[0]，因为modal是一个jQuery对象，而我们比较的是DOM元素。
+                modal.css('display', 'none'); // 或者使用 modal.hide(); 如果喜欢使用jQuery方法的话。
+            }
+        }
+        }
+        
+   
+        //放大图片
+       function viewLargeImage(imageUrl) {
+          window.open(imageUrl);
+        }
+        
+            //申请发货
+        function submitForm(){
+           
+            const orderid = document.getElementsByName("orderid");
+          
+            check_val = [];
+            for(k in orderid){
+                if(orderid[k].checked)
+                    check_val.push(orderid[k].value);
+            }
+           if (!check_val.length){
+              layer.msg('请选择订单');
+                return;
+            }
+              console.log(check_val);
+ 
+            $.ajax({
+                type:"POST",
+                url:"dingdan/send",//提交数据接口
+                data:{orderid:check_val},
+                dataType:"JSON",
+                success:function (res) {
+                    layer.msg(res.msg);
+                    }
+                });
+        }
+        
+        
+       //原版
+        
+    //      $(document).ready(function(){
+    //     // 获取模态框元素和打开模态框按钮元素
+    //     var modal = $('#myModal');
+    //     var btn = $('#openModal');
+        
+    //     var span = $('.close');
+    //     var submitBtn = $('#submitBtn');
+    //     var nameInput = $('#nameInput');
+
+    //     // 当用户点击打开模态按钮时，打开模态框
+    //     btn.on('click', function(){
+    //         modal.css('display', 'block'); // 或者使用 modal.show(); 如果喜欢使用jQuery方法的话。
+    //     });
+      
+        
+
+
+    //     // 当用户点击 <span> (x), 关闭模态框
+    //     span.on('click', function(){
+    //         modal.css('display', 'none'); // 或者使用 modal.hide(); 如果喜欢使用jQuery方法的话。
+    //     });
+
+    //     // 当用户点击模态框外的区域，关闭模态框（可选）
+    //     window.onclick = function(event) {
+    //         if (event.target == modal[0]) { // 注意这里是modal[0]，因为modal是一个jQuery对象，而我们比较的是DOM元素。
+    //             modal.css('display', 'none'); // 或者使用 modal.hide(); 如果喜欢使用jQuery方法的话。
+    //         }
+    //     }
+    // });
+    
+        function addTrackingNumber() {
+        var input = document.getElementById('trackingNumber');
+        var trackingNumbers = document.getElementById('ordersn');
+        var value = input.value.trim(); // 获取输入值并去除前后空格
+        if (value && !trackingNumbers.innerHTML.includes(value)) { // 如果输入值不为空且不存在于列表中
+            if (trackingNumbers.innerHTML) { // 如果已有内容，则添加逗号分隔符和值
+                trackingNumbers.innerHTML += ',' + value;
+            } else { // 如果没有内容，直接设置值
+                trackingNumbers.innerHTML = value;
+            }
+            input.value = ''; // 清空输入框
+        } else if (!value) { // 如果输入为空也提醒用户输入有效值
+            layer.msg('请输入有效的快递单号');
+        }
+    } 
+    
+    
+    //添加包裹
+      function recharge(){
+               
+                var ordersn = $("#ordersn").val();
+                var out_trade_no =   $("#trade_nos").val();
+              if(!out_trade_no){
+                   var msg = '订单号错误，请重新输入';
+              }
+              
+               
+                if (ordersn == ''){
+                layer.msg('请输入运单号');
+                return;
+                }
+                var notes = $("#notes").val();
+                var msg = '确定提交包裹？';
+                layer.msg(msg, {
+                        btn: ['确定', '取消']
+                        ,yes: function(index, layero){
+                                $.ajax({
+                                type:"POST",
+                                url:"dingdan/add",//提交数据接口
+                                data:{ordersn:ordersn,out_trade_no:out_trade_no,notes:notes},
+                                dataType:"JSON",
+                                success:function (res) {
+                                  layer.msg(res.msg);
+                                 location.reload();
+                                },
+                                  error: function(ress) {
+                                    layer.msg(ress.msg);
+                                     location.reload();
+                                  }
+                              });
+                            }
+                        ,btn2: function(index, layero){
+                        //按钮【按钮二】的回调
+                            layer.msg("已取消");
+                             location.reload();
+                            return false //开启该代码可禁止点击该按钮关闭
+                            
+                        }
+                     });
+                }
+    
+    
+    
+        
+        
+    //   document.addEventListener('click', function(event) {
+    //         var alls = document.getElementById('alls');
+    //         if (!alls.contains(event.target)) {
+    //           alls.style = 'color:rgb(118, 118, 118)';
+    //         }
+    //       });
+        
+    
+    
+
+
+
+</script>

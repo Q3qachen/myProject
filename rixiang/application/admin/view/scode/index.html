@@ -1,0 +1,294 @@
+ <style type="text/css">
+        #myTabs li p {
+            padding-top: 5px;
+            margin-bottom: 0px;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        #myTabs li a{
+            height: 128px;
+        }
+        .cheek {
+            width: 100%;
+            /*height: 120px;*/
+            overflow: auto;
+            border: 1px solid #DBDBDB;
+            border-radius: 10px;
+            padding: 10px 20px;
+            /*margin-bottom: 20px;*/
+           
+        }
+        .cheek:hover {
+            background-color: #B1EBE6;
+            border-color: #33CABB;
+        }
+        .pro-img {
+            padding: 10px 0;
+            float: left;
+            width: 20%;
+            /*background-color: #33CABB;*/
+        }
+        .pro-img img {
+            width: 70px;
+            /*width: 100%;*/
+        }
+        .pro-content {
+            float: right;
+            padding-left: 30px;
+            width: 80%;
+        }
+        .describe {
+            height:20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display:-webkit-box;
+            -webkit-box-orient:vertical;
+            -webkit-line-clamp:1;
+        }
+        .name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+          
+        }
+        .elem {
+          display: none;
+        }
+     
+
+  
+    .question {
+      position: relative;
+      padding: 10px 0;
+    }
+    .question:first-of-type {
+      padding-top: 0;
+    }
+    .question:last-of-type {
+      padding-bottom: 0;
+    }
+    .question label {
+      transform-origin: left center;
+      color: #4E73DF;
+      font-weight: 100;
+      /*letter-spacing: 0.01em;*/
+      font-size: 13px;
+      box-sizing: border-box;
+      padding: 8px 15px;
+      display: block;
+      position: absolute;
+      margin-top: -40px;
+      z-index: 2;
+      pointer-events: none;
+      font-weight: 400;
+    }
+    .question small{
+      font-size: 13px;
+      box-sizing: border-box;
+      padding: 8px 15px;
+      display: block;
+      position: absolute;
+      margin-top: -40px;
+      margin-left: 80px;
+      z-index: 2;
+      color:#0c8adf;
+      margin-left:200px;
+    }
+    .question input[type="text"] {
+      appearance: none;
+      background-color: none;
+      border: 1px solid #4E73DF;
+      line-height: 0;
+      font-size: 15px;
+      width: 90%;
+      display: block;
+      box-sizing: border-box;
+      padding: 10px 15px;
+      border-radius: 60px;
+      color: #4E73DF;
+      font-weight: 100;
+      letter-spacing: 0.01em;
+      position: relative;
+      z-index: 1;
+       
+    }
+    .question input[type="text"]:focus {
+      outline: none;
+         background-image:linear-gradient( 135deg, #66B3FF 10%, #0066CC 100%) !important;
+      color: white;
+      margin-top: 30px;
+    }
+    .question input[type="text"]:valid {
+      margin-top: 30px;
+    }
+    .question input[type="text"]:focus ~ label {
+      -moz-transform: translate(0, -35px);
+      -ms-transform: translate(0, -35px);
+      -webkit-transform: translate(0, -35px);
+      transform: translate(0, -35px);
+    }
+    .question input[type="text"]:valid ~ label {
+      /*text-transform: uppercase;*/
+      /*font-style: italic;*/
+     
+      -moz-transform: translate(0px, -35px) scale(1);
+      -ms-transform: translate(0px, -35px) scale(1);
+      -webkit-transform: translate(0px, -35px) scale(1);
+      transform: translate(0px, -35px) scale(1);
+    }
+    
+     .sections{
+        float:right;
+        width:94%; 
+        height:600px;
+        position: relative;
+    
+    }
+     .section{
+        width: 80%;
+        height: 550px;
+        position: absolute;
+    	top: 0;
+    	left: 0;
+    	right: 0;
+    	bottom: 0;
+    	margin: auto;
+       }
+        
+    .back{
+         /*background-image:linear-gradient( 135deg, #66B3FF 10%, #0066CC 100%) !important;*/
+    }
+    .diqu{
+      border: 1px solid #4E73DF;
+      line-height: 0;
+      box-sizing: border-box;
+      border-radius: 30px;
+      color: #4E73DF;
+      
+    }
+    
+    .liebiao{
+      margin-top:50px;
+      border: 1px solid #4E73DF;
+      line-height: 0;
+      font-size: 15px;
+      display: block;
+      box-sizing: border-box;
+      padding: 10px 15px;
+      border-radius: 30px;
+      color: #4E73DF;
+      font-weight: 100;
+    }
+         
+         
+      
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            width: 80%;
+            height: 80%;
+            margin: auto;
+            background: white;
+        }
+  
+    </style>
+
+
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+    <div class="panel-heading" style='background-image:linear-gradient( 135deg, #66B3FF 10%, #0066CC 100%) !important;'>
+        <div class="panel-lead" style='color:#0066CC'><em>商品入库</em></div>
+    </div>
+    <div class="panel-body">
+
+        <form id="myInput" action="scode/index" class="form-horizontal" role="form" data-toggle="validator" method="POST"
+             >
+            <div class="form-group">
+            </div>
+            
+           <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('')}</label>
+                <div class="col-xs-12 col-sm-8 question">
+                    <input id="ordersn"  name="ordersn" type="text" required>
+                     <label>输入接货运单号</label>
+                </div>
+            </div>
+             <input type="submit" value="Submit" style="display: none;" />
+        </form>
+     
+         <label class="control-label col-xs-12 col-sm-2">{:__('')}</label>
+          <div class="col-xs-12 col-sm-8 question">
+                                <div class="col-xs-11 liebiao">
+                                    <!-- 刷新页面的重点-->
+                                  <div id="toolbar" class="toolbar hidden">
+                                         <a href="javascript:;" class="btn btn-primary btn-refresh"><i class="fa fa-refresh"></i></a>
+                                    </div>
+                                     <!-- 刷新页面的重点-->
+                                 <table id="table" class="table table-striped table-bordered table-hover table-nowrap"
+                           data-operate-edit="{:$auth->check('test/edit')}" 
+                           data-operate-del="{:$auth->check('test/del')}" 
+                           width="100%">
+                    </table>
+                                  
+
+                              </div>
+                        </div>
+                        <div style="margin-bottom:20px"></div>
+    </div>
+
+</div>
+
+ <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+ <script src="/assets/libs/fastadmin-layer/src/layer.js"></script>
+<script>
+
+
+
+$(document).ready(function() {
+  $('#myInput').keydown(function(e) {
+    if(e.which == 13) { // 检查按键是否是回车键
+      e.preventDefault(); // 阻止表单默认提交
+      var inputValue = $("#ordersn").val(); // 获取输入值
+      var formData = { 'ordersn': inputValue }; // 创建表单数据对象
+ 
+      // 使用Ajax提交数据
+      $.ajax({
+        url: 'scode/index', // 服务器端点
+        type: 'POST',
+        data: formData,
+        dataType:"JSON",
+        success: function(response) {
+          // 成功回调函数
+        
+          layer.msg(response.msg);
+          
+          setTimeout(function() {
+             window.parent.location.reload();
+             }, 2500);
+        
+           
+        },
+      
+      });
+    }
+  });
+});
+
+//光标自动进入input
+document.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('ordersn');
+            input.focus();
+            
+            // 可选：设置光标位置（如果需要）
+            // input.setSelectionRange(0, 0);
+        });
+
+
+
+  
+      
+
+</script>

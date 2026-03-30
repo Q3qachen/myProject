@@ -1,0 +1,247 @@
+<style>
+    .panel-post {
+        position: relative;
+    }
+
+    .btn-post {
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+    }
+
+    .img-border {
+        border-radius: 3px;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .embed-responsive img {
+        position: absolute;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .channel-list li a {
+        color: #2c3e50;
+    }
+
+    .channel-list li.active a, .channel-list li a:hover {
+        color: #3c8dbc;
+    }
+
+    .channel-list li.active a {
+        font-weight: bold;
+    }
+
+    .panel-user h4 {
+        font-weight: normal;
+        font-size: 14px;
+    }
+
+    .pretty-btn {
+
+        background-color: #1a98d5; /* 绿色背景 */
+        border: none;
+        color: white; /* 白色文本 */
+        padding: 6px 90px; /* 内边距 */
+        text-align: center; /* 居中文本 */
+        text-decoration: none; /* 无文本装饰 */
+        display: inline-block; /* 行内块显示 */
+        font-size: 14px; /* 字体大小 */
+        margin: 4px 2px; /* 外边距 */
+        cursor: pointer; /* 手形鼠标光标 */
+        border-radius: 15px; /* 边框圆角 */
+        transition: box-shadow 0.5s ease; /* 盒子阴影过渡效果 */
+    }
+
+    .pretty-btn:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19); /* 悬停时盒子阴影 */
+    }
+    .ivner input{
+       margin-top: 5px;
+       margin-bottom: 20px;
+       border-radius: 5px;
+    }
+
+    .order-list { width: 100%; border-collapse: collapse; }
+    .order-list th, .order-list td { border: 1px solid #ddd; padding: 8px; }
+    .order-list tr:nth-child(even) { background-color: #f2f2f2; }
+    .order-list tr:hover { background-color: #ddd; }
+    
+    .input-container {
+            display: flex; /* 使用flex布局，让子元素可以灵活排列 */
+            justify-content: space-between; /* 让子元素在主轴（水平方向）均匀分布，两端对齐 */
+             align-items: center; 
+            width: 100%; /* 可以根据实际需求调整宽度，这里设置为占满父元素宽度 */
+          
+
+        }
+
+        .input-container input {
+            flex: 1; /* 让每个input框平均分配剩余空间，实现等宽效果 */
+            width: 80px;
+            height: 60px; /* 输入框高度，可按需调整 */
+            border: 1px solid #ccc; /* 输入框边框样式 */
+            border-radius: 5px; /* 输入框圆角效果 */
+            padding: 5px; /* 输入框内文本的内边距 */
+            margin: 5px;
+            text-align: center;
+        }
+       .ivner select {
+         border-radius: 5px;
+         margin-top: 5px;
+         margin-bottom: 20px;
+        }
+        .ivnerselect {
+             flex: 1; /* 让每个input框平均分配剩余空间，实现等宽效果 */
+            width: 80px;
+            height: 60px; /* 输入框高度，可按需调整 */
+            border: 1px solid #ccc; /* 输入框边框样式 */
+            border-radius: 15px; /* 输入框圆角效果 */
+            padding: 5px; /* 输入框内文本的内边距 */
+            margin: 5px;
+            text-align: center;
+    }
+
+       .ivner select option {
+          background-color: #fff;
+          color: #333;
+        }
+       .ivner select option:hover {
+          background-color: #f0f0f0;
+        }
+</style>
+<div class="container mt-20">
+    <div id="content-container">
+        <div class="row">
+            
+            <div class="col-md-9">
+                <div class="panel panel-default panel-user">
+                    <div class="panel-body">
+                        <div class="panel-post">
+                            <h2 class="page-header">运费测算</h2>
+                        </div>
+
+                        <div class="form-group" data-field="" data-favisible="">
+                            
+
+
+                            <div class="ivner">
+                                     <label>选择地区</label>
+                                      <select id="lang" name='lang' class="form-control">
+                                          <option value="1">日本</option>
+                                          <!--<option value="2">俄罗斯</option>-->
+                                     </select>
+                                    
+                                
+                                
+                                
+                                    <label>货物重量</label>
+                                    <input  type="number" name="weight" id="weight"  class="form-control" placeholder="立方重量(KG)"/>
+                                    
+                                     <label>货物尺寸</label>
+                                     <div class="input-container">
+                                        <input type="number" name='chang'   class="form-control" id="chang" placeholder="长(CM)">
+                                        <input type="number" name='kuan'    class="form-control" id="kuan" placeholder="宽(CM)">
+                                        <input type="number" name='gao'     class="form-control" id="gao" placeholder="高(CM)">
+                                    </div>
+                             
+                                    <div style="margin-bottom: 20px;"></div>
+                                    <div style=" display: flex;justify-content: center;align-items: center;"><button onclick="recharge()" class="pretty-btn">立即查询</button></div>
+                            </div>
+                                <hr>
+                                    <div>
+                                       <h3 class="">查询结果</h3>
+                                    <div>
+                                       <div id="txtHint">
+                                    <div>
+               </div>
+               
+      </div>
+ </div>
+ <hr>
+                <div style="font-size: 13px;color: #000000;padding: 10px 10px">
+                            <p>说明：</p>
+                            <p>1.抛重(KG) = 包裹体积(长*高*宽)/6000</p>
+                            <p>2.毛重(KG) = 实际称重公斤数</p>
+                            <p>3.计费重量 = 抛重和毛重取较大值并向上取到1</p>
+                            <p>4.测算费用为不含耗材的费用</p>
+                            <p>5.体积和重量均不能超过30，大于30建议分包</p>
+                           
+                        </div>
+  
+
+<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+<script>
+                function recharge(){
+                var lang = $("#lang").val();
+                var weight = $("#weight").val();
+                var chang = $("#chang").val();
+                var kuan = $("#kuan").val();
+                var gao = $("#gao").val();
+                
+                    if (lang==1&&(weight <0 || weight >30)){
+                        layer.msg('请输入小于30的数字');
+                        return;
+                    }
+                     if (lang==2&&(weight <0 || weight >20)){
+                        layer.msg('请输入小于20的数字');
+                        return;
+                    }
+                    if(weight == ''){
+                        weight=0;
+                    }
+                    if (chang == ''||chang <0){
+                         chang=0;
+                    }
+                    if (kuan == ''||kuan <0){
+                        kuan=0;
+                    }
+                    if (gao == ''||gao <0){
+                        gao=0;
+                    }
+                    if(weight==0&&chang==0&&kuan==0&&gao==0){
+                        layer.msg('请输入重量或者体积');
+                        return;
+                    }
+                    
+                    if(chang*kuan*gao/6000>30){
+                        layer.msg('货物体积不能大于30立方厘米 ');
+                        return;
+                    }
+                $.ajax({
+                       type:"POST",
+                       url:"yunfei/calculation",//提交数据接口
+                       data:{weight:weight,chang:chang,kuan:kuan,gao:gao,lang:lang},
+                       dataType:"JSON",
+                       success:function (res) {
+                           if(res.data == ''){
+                               $("#txtHint").html("<div></div>");
+                           }
+                           var str = "";//把数据组装起来
+                             str += "  <table class='order-list'>" +
+                                   "<thead>" +
+                                   " <tr style='background-color:#62ade1;color:#fff'>" +
+                                   "<th>重量(KG)</th>" +
+                                //   "<th>计算规则</th>" +
+                                   "<th>预估费用</th>" +
+                                   "</tr>" +
+                                   "</thead>" +
+                                   "<tbody>" +
+                                   "<tr>" +
+                                   "<td>"+res.weight+"</td>" +
+                                //   "<td>"+res.data+"</td>" +
+                                   "<td>"+res.datas+"</td>" +
+                                   "</tr>" +
+                                   "</tbody>" +
+                                   " </table>";
+
+                               $("#txtHint").html(str);//把拼好的样式填到指定的位置，一个Ajax的表格刷新功能就完成了
+
+                           }
+                   });
+
+
+                }
+</script>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>订单详情</title>
+<style>
+  body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+   .order-details-container {
+            width: 90%;
+            max-width: 580px;
+            margin: 10px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        .order-header {
+            text-align: center;
+            margin-bottom: 20px;
+           
+        }
+
+        .order-header h1 {
+            font-size: 24px;
+            color: #333333;
+        }
+
+        .order-header .order-status {
+             color: rgba(255, 0, 0, 0.5);
+            font-weight: bold;
+        }
+
+        .order-info, .product-list, .order-summary {
+            margin-bottom: 20px;
+        }
+
+        .info-item, .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #666666;
+        }
+
+        .info-item label, .summary-item label {
+            font-weight: bold;
+        }
+
+        .product-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .product-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #fafafa;
+            border-radius: 5px;
+        }
+
+        .product-item img {
+            width: 80px;
+            height: 80px;
+            margin-right: 15px;
+        }
+
+        .product-desc h3 {
+            font-size: 18px;
+            color: #333333;
+            margin-bottom: 5px;
+        }
+
+        .product-desc p {
+            margin: 2px 0;
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .order-summary .total {
+            font-size: 18px;
+            color: #ff5722;
+            margin-top: 10;
+        }
+        button {
+          padding: 3px 5px;
+          background-color: #007bff;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 12px;
+        }
+ 
+.fu:hover {
+  background-color: #0056b3;
+}
+
+.pay-button {
+    
+  background-color: #4CAF50; /* 绿色背景 */
+  border: none; /* 无边框 */
+  color: white; /* 白色文字 */
+  padding: 13px 70px; /* 内边距 */
+  text-align: center; /* 文本居中 */
+  text-decoration: none; /* 无文本装饰 */
+  display: inline-block; /* 行内块元素 */
+  font-size: 16px; /* 字体大小 */
+  margin: 4px 2px; /* 外边距 */
+  cursor: pointer; /* 鼠标悬停时显示手形图标 */
+  border-radius: 8px; /* 圆角边框 */
+  transition: background-color 0.3s ease; /* 背景颜色过渡效果 */
+}
+ 
+.pay-button:hover {
+  background-color: #45a049; /* 鼠标悬停时的背景颜色 */
+}
+</style>
+</head>
+<body>
+ 
+<div class="order-details-container">
+    <header class="order-header">
+        <h1>订单详情</h1>
+         <span>{$times}</span>
+     
+    </header>
+     {volist name='result' id='item'}
+    <section class="order-info">
+        <div class="info-item">
+            <label>接货运单号</label>
+            <span id='ordersn'>{$item.ordersn}</span>
+        </div>
+        <!--<div class="info-item">-->
+        <!--    <label>下单时间</label>-->
+        <!--    <span>{$item.time}</span>-->
+        <!--</div>-->
+       <div class="info-item">
+            <label>订单状态</label>
+            {if condition="$item.status == 0"}
+            <span style="color:red">未入库</span>
+            {elseif condition="$item.status == 1"}
+             <span style="color:red">待打包</span>
+              {elseif condition="$item.status == 2"}
+             <span style="color:red">待付款</span>
+              {elseif condition="$item.status == 3"}
+             <span style="color:red">已付款</span>
+             {elseif condition="$item.status == 4"}
+             <span style="color:red">已完成</span>
+             {/if}
+            
+        </div>
+    </section>
+    
+       <section class="product-list">
+        <!--<h2>包裹开箱/称重</h2>-->
+        <ul>
+            <li>
+                <div class="product-item">
+                    <img src="{$item.kimage}" alt="开箱图片">
+                    <img src="{$item.cimage}" alt="称重图片">
+                    <div class="product-desc">
+                        <h4>开箱/测算</h4>
+                        <!--<p>Apple Watch Series 7</p>-->
+                        <!--<p>重量: {$item.weight}</p>-->
+                        <!--<p>体积:  {$item.volume}</p>-->
+                    </div>
+                </div>
+            </li>
+            
+            <!-- 更多商品项 -->
+        </ul>
+    </section>
+    <hr>
+    {/volist}
+
+  
+    <section class="order-summary">
+         <header class="order-header">
+           <h3  style='color:#8ab2e2'>订单摘要</h3>
+      </header>
+     
+         {if condition="$status eq '已发货'"} 
+        <div class="summary-item" id='wnumber'>
+            <label>发货运单号</label>
+            <span  id='textToCopy' class="waybill_number">{$wnumber}     <button class="fu" onclick="copyWaybillNumber()">复制</button></span>
+       
+        </div>
+        {/if}
+         <div class="summary-item">
+            <label>收件信息</label>
+            <!--<span style="width: 60%; word-wrap: break-word;text-align: right;">{$item.name}</span>-->
+             <pre style="width: 70%;background-color: #fafafa;border-radius: 5px;  border: none;">{$item.name}</pre>
+        </div>
+         <div class="info-item">
+            <label>收货邮编</label>
+            <span>{$item.zipcode}</span>
+        </div>
+        {if $weight!=0}
+        <div class="summary-item">
+            <label>总毛重(kg)</label>
+            <span>{$weight}</span>
+        </div>
+        {/if}
+        {if $volume!=0}
+        <div class="summary-item">
+            <label>总抛重(kg)</label>
+            <span>{$volume}</span>
+        </div>
+        {/if}
+         <div class="summary-item">
+            <label>包裹金额</label>
+            <span>￥{$item.money-$item.mables}</span>
+        </div>
+         <div class="summary-item">
+            <label>耗材金额</label>
+            <span>￥{$item.mables}</span>
+        </div>
+        <div class="summary-item total" id='money'>
+            <label>实付金额</label>
+            <span>¥{$money}</span>
+        </div>
+    </section>
+    
+     {if condition="$status eq '待付款'"} 
+              <div style=" text-align: center;">
+                <button id="formSubmitBtn"  class="pay-button"  >立即支付</button>
+             </div>
+    {/if}
+    
+    
+</div>
+</body>
+</html>
+
+<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+<script>
+
+            
+function copyWaybillNumber() {
+
+  var textToCopy = $('#textToCopy').text();
+
+  // 创建一个临时的输入框来存储要复制的文本
+  var input = document.createElement("input");
+  input.value = textToCopy;
+  
+  // 将临时输入框添加到页面中
+  document.body.appendChild(input);
+  
+  // 选中临时输入框的文本
+  input.select();
+  
+  // 执行复制操作
+  document.execCommand("copy");
+  
+  // 移除临时输入框
+  document.body.removeChild(input);
+  
+  // 可以添加一些用户反馈，比如弹窗提示复制成功
+layer.msg('复制成功');
+}
+
+// $(document).ready(function(){
+//     $("#formSubmitBtn").click(function(){
+//         alert("按钮被点击！");
+//     });
+// });
+            
+          $('document').ready(function () {
+                $('#formSubmitBtn').click(function () {
+              
+                layer.open({
+                    style: 'color:#04BE02;width:30%;',
+                    content: '你确认要支付吗？',
+                    title:'发起支付提示',
+                    btn: ['确认', '取消'],
+                    shadeClose: false,
+                    yes: function () {
+                        $('#formSubmitBtn').unbind();
+                        $('#formSubmitBtn').parent().removeClass('sc-bg-alert').addClass('sc-bg');
+                        layer.closeAll();
+                        formSubmitBtns();
+                    }, no: function () {
+                        return false;
+                    }
+                });
+
+            });
+
+        });
+
+
+
+
+
+        //  //下单
+
+         function formSubmitBtns() {
+             var money = "{$money}";
+             var out_trade_no = "{$out_trade_no}";
+              
+            $.post('details/wx',
+                    {
+                      money:money,out_trade_no:out_trade_no
+                    },
+                    function (data) {
+//                        alert(data);
+                        result_data = JSON.parse(data);
+                        //alert(result_data['code']);
+                        if (result_data['code'] == 200) {
+                                callpay();
+                        } else {
+                          alert(result_data['str']);
+                        }
+                    });
+                }
+        
+        function callpay() {
+            if (typeof WeixinJSBridge == "undefined") {
+                if (document.addEventListener) {
+                    document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+                } else if (document.attachEvent) {
+                    document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                }
+            } else {
+                jsApiCall();
+            }
+        }
+        function jsApiCall()
+        {
+            WeixinJSBridge.invoke(
+                    'getBrandWCPayRequest',
+                    JSON.parse(result_data['data']['jsApiParameters']),
+                    function (res) {
+                        if (res.err_msg == "get_brand_wcpay_request:ok") {
+                             Layer.msg('支付成功');
+                                setTimeout(function() {
+                             window.location.href = 'http://cons.lncbe.com/index/dingdan/index';
+                            }, 1500);
+                           
+                        }
+                        if (res.err_msg == "get_brand_wcpay_request:cancel") {
+                               Layer.msg('您取消了支付')
+                                setTimeout(function() {
+                         window.location.href = 'http://cons.lncbe.com/index/dingdan/index';
+                        }, 1500);
+                            
+                        }
+                        if (res.err_msg == "get_brand_wcpay_request:fail") {
+                            
+                                 Layer.msg('支付失败');//return;
+                                    setTimeout(function() {
+                                     window.location.href = 'http://cons.lncbe.com/index/dingdan/index';
+                                    }, 1500);
+                           
+                        }
+                    }
+            );
+        }
+</script>
+
+
+
+

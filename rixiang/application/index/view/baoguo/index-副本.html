@@ -1,0 +1,281 @@
+<style>
+    .panel-post {
+        position: relative;
+    }
+
+    .btn-post {
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+    }
+
+    .img-border {
+        border-radius: 3px;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .embed-responsive img {
+        position: absolute;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .channel-list li a {
+        color: #2c3e50;
+    }
+
+    .channel-list li.active a, .channel-list li a:hover {
+        color: #3c8dbc;
+    }
+
+    .channel-list li.active a {
+        font-weight: bold;
+    }
+
+    .panel-user h4 {
+        font-weight: normal;
+        font-size: 14px;
+    }
+
+    .pretty-btn {
+
+        background-color: #1a98d5; /* 绿色背景 */
+        border: none;
+        color: white; /* 白色文本 */
+        padding: 6px 100px; /* 内边距 */
+        text-align: center; /* 居中文本 */
+        text-decoration: none; /* 无文本装饰 */
+        display: inline-block; /* 行内块显示 */
+        font-size: 14px; /* 字体大小 */
+        margin: 4px 2px; /* 外边距 */
+        cursor: pointer; /* 手形鼠标光标 */
+        border-radius: 15px; /* 边框圆角 */
+        transition: box-shadow 0.5s ease; /* 盒子阴影过渡效果 */
+    }
+
+    .pretty-btn:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19); /* 悬停时盒子阴影 */
+    }
+    .ivner input{
+        margin: 15px 0;
+        border-radius: 15px;
+    }
+    
+     input, button {
+        margin: 10px;
+        padding: 8px;
+    }
+
+    #trackingNumbers {
+        margin-top: 20px;
+    }
+   
+   
+   .uni-button {
+
+     font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+      line-height: 1.42857143;
+    border-radius: 8px;
+    -webkit-tap-highlight-color: transparent;
+    overflow: hidden;
+    color: #000;
+    background-color: #f8f8f8;
+   
+    width: 35px;
+   }
+   .contrs{
+     width: 70%;
+    height: 33px;
+    font-size: 13px;
+   
+    color: #555555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+   }
+  .contrs:focus {
+    border-color: #66afe9; 
+   outline: none; /* 去除轮廓 */
+}
+
+  
+</style>
+<div class="container mt-20">
+    <div id="content-container">
+        <div class="row">
+           
+            <div class="col-md-9">
+                <div class="panel panel-default panel-user">
+                    <div class="panel-body">
+                        <div class="panel-post">
+                            <h2 class="page-header">添加包裹</h2>
+                        </div>
+
+                            <div class="ivner" style="width:100%">
+<!--                                    <label>收货人：</label>-->
+                                  
+                                    
+                                        
+                                      <textarea  type="text"  id="name" style="
+        border-radius: 15px; " class="form-control" placeholder="收货信息" name="name"></textarea>
+<!--                                    <div >收货人电话：</div>-->
+                                    <!--<input  type="text" name="phone" id="phone" value="" class="form-control"  placeholder="电话"/>-->
+
+                                    <!--<input  type="text" name="address" id="address" value="" class="form-control"  placeholder="地址"/>-->
+                                    
+                                     <input  type="text" name="zipcode" id="zipcode" value="" class="form-control"  placeholder="邮编"/>
+                             
+                                    <input type="text" id="trackingNumber"  class="contrs"  placeholder="输入运单号"/> 
+                                    
+                                    <button class="uni-button" onclick="addTrackingNumber()">+</button>
+                                    
+                                    <textarea  type="text"  id="ordersn" style="border-radius: 15px; " class="form-control" placeholder="全部运单号" name="ordersn"></textarea>
+
+                                    <input  type="text" name="notes" id="notes" value="" class="form-control"  placeholder="商品备注"/>
+                                    <div style="margin-bottom: 20px;"></div>
+                                    <div style=" display: flex;justify-content: center;align-items: center;"><button onclick="recharge()" class="pretty-btn">提交包裹</button></div>
+                            </div>
+                          </div>
+                            <hr>
+                          <div style="font-size: 13px;color: #000000;padding: 10px 10px">
+                            <p>说明：</p>
+                            <p>1.收货信息、邮编粘贴国外信息</p>
+                            <p>2.运单号填写邮往仓库的运单号</p>
+                            <p>3.货物到达后会回写发出的运单号</p>
+                            <p>4.商品备注为选填项</p>
+                            <p>5.两个快递单号中间一定要用逗号","隔开(例:SF1234,SF5678)，如不会操作,请用上面[快递单号]，输入一个点一下+号</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+       </div>
+       
+</div>
+
+
+
+<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+<script>
+                function recharge(){
+                var name = $("#name").val();
+                    if (name == ''){
+                        layer.msg('请输入收货人信息');
+                        return;
+                    }
+                // var phone = $("#phone").val();
+                // var reg = /^1[3456789]\d{9}$/;
+                //     if (!reg.test(phone)) {
+                //         layer.msg('手机号格式错误');
+                //         return;
+                //     }
+                    //  if (phone == ''){
+                    //     layer.msg('请输入收货人电话');
+                    //     return;
+                    // }
+                    // var address = $("#address").val();
+                    // if (address == ''){
+                    //     layer.msg('请输入收货人地址');
+                    //     return;
+                    // }
+                     var zipcode = $("#zipcode").val();
+                    if (zipcode == ''){
+                        layer.msg('请输入邮编');
+                        return;
+                    }
+                var ordersn = $("#ordersn").val();
+                if (ordersn == ''){
+                layer.msg('请输入运单号');
+                return;
+                }
+                if(/\s/.test(ordersn)){
+                     layer.msg('运单号格式有误,请看下方说明');
+                return;
+                }
+                
+                
+                var notes = $("#notes").val();
+                var msg = '确定提交包裹？';
+                layer.msg(msg, {
+                        btn: ['确定', '取消']
+                        ,yes: function(index, layero){
+                                $.ajax({
+                                type:"POST",
+                                url:"baoguo/add",//提交数据接口
+                                data:{name:name,ordersn:ordersn,notes:notes,zipcode:zipcode},
+                                dataType:"JSON",
+                                success:function (res) {
+                                  layer.msg(res.msg);
+                                },
+                                  error: function(ress) {
+                                    layer.msg(ress.msg);
+                                  }
+                              });
+                            }
+                        ,btn2: function(index, layero){
+                        //按钮【按钮二】的回调
+                            layer.msg("已取消");
+                            return false //开启该代码可禁止点击该按钮关闭
+                        }
+                     });
+                }
+                
+                
+                
+                
+               
+    // script.js
+    document.getElementById('trackingNumber').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            addTrackingNumber(); // 如果按下Enter键，也调用addTrackingNumber函数
+        }
+    });
+
+
+
+    function addTrackingNumber() {
+        var input = document.getElementById('trackingNumber');
+        var trackingNumbers = document.getElementById('ordersn');
+        var value = input.value.trim(); // 获取输入值并去除前后空格
+        if (value && !trackingNumbers.innerHTML.includes(value)) { // 如果输入值不为空且不存在于列表中
+            if (trackingNumbers.innerHTML) { // 如果已有内容，则添加逗号分隔符和值
+              
+                trackingNumbers.innerHTML += ',' + value;
+                 
+            } else { // 如果没有内容，直接设置值
+                trackingNumbers.innerHTML = value;
+            }
+            
+            input.value = ''; // 清空输入框
+        } else if (!value) { // 如果输入为空也提醒用户输入有效值
+           
+             layer.msg('请输入有效的快递单号');
+        }
+    } 
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+</script>

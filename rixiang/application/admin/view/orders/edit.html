@@ -1,0 +1,142 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Ordersn')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ordersn" class="form-control" name="row[ordersn]" type="text" value="{$row.ordersn|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Userid')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-userid" data-rule="required" class="form-control" name="row[userid]" type="number" value="{$row.userid|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('收货人信息')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            
+            <textarea id="c-name" class="form-control" name="row[name]" >{$row.name|htmlentities}</textarea>
+        </div>
+    </div>
+    <!--<div class="form-group">-->
+    <!--    <label class="control-label col-xs-12 col-sm-2">{:__('Phone')}:</label>-->
+    <!--    <div class="col-xs-12 col-sm-8">-->
+    <!--        <input id="c-phone" class="form-control" name="row[phone]" type="text" value="{$row.phone|htmlentities}">-->
+    <!--    </div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--    <label class="control-label col-xs-12 col-sm-2">{:__('Address')}:</label>-->
+    <!--    <div class="col-xs-12 col-sm-8">-->
+    <!--        <input id="c-address" class="form-control" name="row[address]" type="text" value="{$row.address|htmlentities}">-->
+    <!--    </div>-->
+    <!--</div>-->
+    
+        <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('收货邮编')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-zipcode" class="form-control" name="row[zipcode]" type="text" value="{$row.zipcode|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Kimage')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-kimage" class="form-control" size="50" name="row[kimage]" type="text" value="{$row.kimage|htmlentities}">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="faupload-kimage" class="btn btn-danger faupload" data-input-id="c-kimage" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="false" data-preview-id="p-kimage"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-kimage" class="btn btn-primary fachoose" data-input-id="c-kimage" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-kimage"></span>
+            </div>
+            <ul class="row list-inline faupload-preview" id="p-kimage"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Cimage')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-cimage" class="form-control" size="50" name="row[cimage]" type="text" value="{$row.cimage|htmlentities}">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="faupload-cimage" class="btn btn-danger faupload" data-input-id="c-cimage" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="false" data-preview-id="p-cimage"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-cimage" class="btn btn-primary fachoose" data-input-id="c-cimage" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-cimage"></span>
+            </div>
+            <ul class="row list-inline faupload-preview" id="p-cimage"></ul>
+        </div>
+    </div>
+    
+    
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Wnumber')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-wnumber" class="form-control" name="row[wnumber]" type="text" value="{$row.wnumber|htmlentities}">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('货物重量KG')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-weight" class="form-control" name="row[weight]" type="text" value="{$row.weight|htmlentities}">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('货物体积（抛重）KG')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-volume" class="form-control" name="row[volume]" type="text" value="{$row.volume|htmlentities}">
+        </div>
+    </div>
+    
+       <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('耗材')}:</label>
+        <div class="col-xs-12 col-sm-8">
+              <select  name='row[mables]' class="form-control" data-live-search="true" value="{$row.mables|htmlentities}">
+                        <option  value="0" {if condition="($row['mables'] eq 0)"}selected {/if}>无</option>
+                        <option  value="18" {if condition="($row['mables'] eq 18)"}selected {/if}>550*380*300</option>
+                        <option  value="16" {if condition="($row['mables'] eq 16)"}selected {/if}>445*350*350</option>
+                        <option  value="13"  {if condition="($row['mables'] eq 13)"}selected {/if}>395*295*190</option>
+                        <option  value="11"  {if condition="($row['mables'] eq 11)"}selected {/if}>320*230*145</option>
+                        <option  value="9"  {if condition="($row['mables'] eq 9)"}selected {/if}>230*170*115</option>
+                </select>
+        </div>
+    </div>
+      <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Money')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-money" class="form-control" step="0.01" name="row[money]" type="number" value="{$row.money|htmlentities}">
+             <span class="text-gray">不填写订单金额时，系统自动按货物重量/体积加耗材计算出订单金额</span>
+        </div>
+    </div>
+     <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('三方单号')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-party" class="form-control" name="row[party]" type="text" value="{$row.party|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Notes')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-notes" class="form-control" name="row[notes]" type="text" value="{$row.notes|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Status')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            {:build_radios('row[status]', ['0'=>__('未入库'), '1'=>__('待打包'), '2'=>__('待打款'), '3'=>__('已发货')], $row['status'])}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-time" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[time]" type="text" value="{$row.time}">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+</form>
