@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/addons/cms/library/hashids/tests" isTestSource="true" packagePrefix="Hashids\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/thinkphp/library/think" isTestSource="false" packagePrefix="think\" />
       <sourceFolder url="file://$MODULE_DIR$/thinkphp/tests/thinkphp" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/easywechat-composer/easywechat-composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ezyang/htmlpurifier" />
