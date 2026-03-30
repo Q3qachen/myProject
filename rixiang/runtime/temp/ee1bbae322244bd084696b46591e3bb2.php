@@ -1,4 +1,85 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:91:"C:\achen\phpstudy\WWW\myProject\rixiang\public/../application/index\view\dingdan\index.html";i:1774860787;s:82:"C:\achen\phpstudy\WWW\myProject\rixiang\application\index\view\layout\default.html";i:1774858886;s:79:"C:\achen\phpstudy\WWW\myProject\rixiang\application\index\view\common\meta.html";i:1774858886;s:81:"C:\achen\phpstudy\WWW\myProject\rixiang\application\index\view\common\script.html";i:1774858886;}*/ ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<title><?php echo htmlentities((isset($title) && ($title !== '')?$title:'') ?? ''); ?> – <?php echo htmlentities($site['name'] ?? ''); ?></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="renderer" content="webkit">
+
+<?php if(isset($keywords)): ?>
+<meta name="keywords" content="<?php echo htmlentities($keywords ?? ''); ?>">
+<?php endif; if(isset($description)): ?>
+<meta name="description" content="<?php echo htmlentities($description ?? ''); ?>">
+<?php endif; ?>
+
+<link rel="shortcut icon" href="/assets/img/favicon.ico" />
+
+<link href="/assets/css/frontend<?php echo \think\Config::get('app_debug')?'':'.min'; ?>.css?v=<?php echo htmlentities(\think\Config::get('site.version') ?? ''); ?>" rel="stylesheet">
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+<!--[if lt IE 9]>
+  <script src="/assets/js/html5shiv.js"></script>
+  <script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<script type="text/javascript">
+    var require = {
+        config: <?php echo json_encode($config ?? ''); ?>
+    };
+</script>
+
+        <link href="/assets/css/user.css?v=<?php echo htmlentities(\think\Config::get('site.version') ?? ''); ?>" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-white navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="<?php echo url('/'); ?>"><?php echo htmlentities($site['name'] ?? ''); ?></a>
+                </div>
+                <div class="collapse navbar-collapse" id="header-navbar">
+                    <ul class="nav navbar-nav navbar-right">
+                       
+                         <li><a href="<?php echo url('/'); ?>"><?php echo __('Home'); ?></a></li>
+                        <li class="dropdown">
+                            <?php if($user): ?>
+                            <a href="<?php echo url('user/index'); ?>" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="avatar-img"><img src="<?php echo cdnurl(htmlentities($user['avatar'] ?? '') ?? ''); ?>" alt=""></span>
+                                <span class="visible-xs-inline-block" style="padding:5px;"><?php echo $user['nickname']; ?> <b class="caret"></b></span>
+                            </a>
+                            <?php else: ?>
+                            <a href="<?php echo url('user/index'); ?>" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('Member center'); ?> <b class="caret"></b></a>
+                            <?php endif; ?>
+                            <ul class="dropdown-menu">
+                                <?php if($user): ?>
+                                <li><a href="<?php echo url('user/index'); ?>"><i class="fa fa-user-circle fa-fw"></i><?php echo __('User center'); ?></a></li>
+                                <li><a href="<?php echo url('user/profile'); ?>"><i class="fa fa-user-o fa-fw"></i><?php echo __('Profile'); ?></a></li>
+                                <li><a href="<?php echo url('user/changepwd'); ?>"><i class="fa fa-key fa-fw"></i><?php echo __('Change password'); ?></a></li>
+                                <li><a href="<?php echo url('user/logout'); ?>"><i class="fa fa-sign-out fa-fw"></i><?php echo __('Sign out'); ?></a></li>
+                                <?php else: ?>
+                                <li><a href="<?php echo url('user/login'); ?>"><i class="fa fa-sign-in fa-fw"></i> <?php echo __('Sign in'); ?></a></li>
+                                <li><a href="<?php echo url('user/register'); ?>"><i class="fa fa-user-o fa-fw"></i> <?php echo __('Sign up'); ?></a></li>
+                                <?php endif; ?>
+
+                            </ul>
+                        </li>
+                         <li><a href="<?php echo url('baoguo/index'); ?>"><i class="fa fa-shopping-bag fa-fw"></i><?php echo __('添加包裹'); ?></a></li>
+                         <li><a href="<?php echo url('yunfei/index'); ?>"><i class="fa fa-calculator fa-fw"></i><?php echo __('运费测算'); ?></a></li>
+                         <li><a href="<?php echo url('dingdan/index'); ?>"><i class="fa fa-reorder fa-fw"></i><?php echo __('订单列表'); ?></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main class="content">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <style>
     /* 基础样式 */
@@ -290,22 +371,22 @@
         <div class="flex space-x-2" style='list-style-type:none;'>
 
             <li><button class="status-btn active px-4 py-2 rounded-full bg-blue-600  text-gray-700" data-status="all" >
-                全部 <span class="count-badge">{$statusall}</span>
+                全部 <span class="count-badge"><?php echo $statusall; ?></span>
             </button></li>
             <li> <button class="status-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700" data-status="0">
-                未入库 <span class="count-badge">{$status0}</span>
+                未入库 <span class="count-badge"><?php echo $status0; ?></span>
             </button></li>
             <li> <button class="status-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700" data-status="1">
-                待打包 <span class="count-badge">{$status1}</span>
+                待打包 <span class="count-badge"><?php echo $status1; ?></span>
             </button></li>
             <li><button class="status-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700" data-status="2">
-                待付款 <span class="count-badge">{$status2}</span>
+                待付款 <span class="count-badge"><?php echo $status2; ?></span>
             </button></li>
             <li> <button class="status-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700" data-status="4">
-                已付款 <span class="count-badge">{$status4}</span>
+                已付款 <span class="count-badge"><?php echo $status4; ?></span>
             </button></li>
             <li><button class="status-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700" data-status="3">
-                已发货 <span class="count-badge">{$status3}</span>
+                已发货 <span class="count-badge"><?php echo $status3; ?></span>
             </button></li>
 
         </div>
@@ -352,7 +433,7 @@
     <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
     <script>
         // 模拟订单数据
-        const orders = {$orderList};
+        const orders = <?php echo $orderList; ?>;
 
         // 全局变量，用来存当前操作的订单和运单号数据
         let currentOrderId = null;
@@ -678,3 +759,14 @@
 
 
     </script>
+        </main>
+
+        <footer class="footer" style="clear:both">
+            <p class="copyright">Copyright&nbsp;©&nbsp;<?php echo date("Y"); ?> <?php echo htmlentities($site['name'] ?? ''); ?> All Rights Reserved <a href="https://beian.miit.gov.cn" target="_blank"><?php echo htmlentities($site['beian'] ?? ''); ?></a></p>
+        </footer>
+
+        <script src="/assets/js/require<?php echo \think\Config::get('app_debug')?'':'.min'; ?>.js" data-main="/assets/js/require-frontend<?php echo \think\Config::get('app_debug')?'':'.min'; ?>.js?v=<?php echo htmlentities($site['version'] ?? ''); ?>"></script>
+
+    </body>
+
+</html>
