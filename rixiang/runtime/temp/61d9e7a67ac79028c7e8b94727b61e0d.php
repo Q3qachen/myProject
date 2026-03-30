@@ -1,0 +1,753 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:76:"C:\achen\phpstudy\WWW\h5\public/../application/index\view\dingdan\index.html";i:1774854950;s:67:"C:\achen\phpstudy\WWW\h5\application\index\view\layout\default.html";i:1733191658;s:64:"C:\achen\phpstudy\WWW\h5\application\index\view\common\meta.html";i:1725591948;s:66:"C:\achen\phpstudy\WWW\h5\application\index\view\common\script.html";i:1725591948;}*/ ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<title><?php echo htmlentities((isset($title) && ($title !== '')?$title:'') ?? ''); ?> – <?php echo htmlentities($site['name'] ?? ''); ?></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="renderer" content="webkit">
+
+<?php if(isset($keywords)): ?>
+<meta name="keywords" content="<?php echo htmlentities($keywords ?? ''); ?>">
+<?php endif; if(isset($description)): ?>
+<meta name="description" content="<?php echo htmlentities($description ?? ''); ?>">
+<?php endif; ?>
+
+<link rel="shortcut icon" href="/assets/img/favicon.ico" />
+
+<link href="/assets/css/frontend<?php echo \think\Config::get('app_debug')?'':'.min'; ?>.css?v=<?php echo htmlentities(\think\Config::get('site.version') ?? ''); ?>" rel="stylesheet">
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+<!--[if lt IE 9]>
+  <script src="/assets/js/html5shiv.js"></script>
+  <script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<script type="text/javascript">
+    var require = {
+        config: <?php echo json_encode($config ?? ''); ?>
+    };
+</script>
+
+        <link href="/assets/css/user.css?v=<?php echo htmlentities(\think\Config::get('site.version') ?? ''); ?>" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-white navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="<?php echo url('/'); ?>"><?php echo htmlentities($site['name'] ?? ''); ?></a>
+                </div>
+                <div class="collapse navbar-collapse" id="header-navbar">
+                    <ul class="nav navbar-nav navbar-right">
+                       
+                         <li><a href="<?php echo url('/'); ?>"><?php echo __('Home'); ?></a></li>
+                        <li class="dropdown">
+                            <?php if($user): ?>
+                            <a href="<?php echo url('user/index'); ?>" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="avatar-img"><img src="<?php echo cdnurl(htmlentities($user['avatar'] ?? '') ?? ''); ?>" alt=""></span>
+                                <span class="visible-xs-inline-block" style="padding:5px;"><?php echo $user['nickname']; ?> <b class="caret"></b></span>
+                            </a>
+                            <?php else: ?>
+                            <a href="<?php echo url('user/index'); ?>" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('Member center'); ?> <b class="caret"></b></a>
+                            <?php endif; ?>
+                            <ul class="dropdown-menu">
+                                <?php if($user): ?>
+                                <li><a href="<?php echo url('user/index'); ?>"><i class="fa fa-user-circle fa-fw"></i><?php echo __('User center'); ?></a></li>
+                                <li><a href="<?php echo url('user/profile'); ?>"><i class="fa fa-user-o fa-fw"></i><?php echo __('Profile'); ?></a></li>
+                                <li><a href="<?php echo url('user/changepwd'); ?>"><i class="fa fa-key fa-fw"></i><?php echo __('Change password'); ?></a></li>
+                                <li><a href="<?php echo url('user/logout'); ?>"><i class="fa fa-sign-out fa-fw"></i><?php echo __('Sign out'); ?></a></li>
+                                <?php else: ?>
+                                <li><a href="<?php echo url('user/login'); ?>"><i class="fa fa-sign-in fa-fw"></i> <?php echo __('Sign in'); ?></a></li>
+                                <li><a href="<?php echo url('user/register'); ?>"><i class="fa fa-user-o fa-fw"></i> <?php echo __('Sign up'); ?></a></li>
+                                <?php endif; ?>
+
+                            </ul>
+                        </li>
+                         <li><a href="<?php echo url('baoguo/index'); ?>"><i class="fa fa-shopping-bag fa-fw"></i><?php echo __('添加包裹'); ?></a></li>
+                         <li><a href="<?php echo url('yunfei/index'); ?>"><i class="fa fa-calculator fa-fw"></i><?php echo __('运费测算'); ?></a></li>
+                         <li><a href="<?php echo url('dingdan/index'); ?>"><i class="fa fa-reorder fa-fw"></i><?php echo __('订单列表'); ?></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main class="content">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<style>
+    /* 基础样式 */
+    body {
+        font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    /* 状态标签动画 */
+    .status-btn {
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+
+    .status-btn.active {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .count-badge {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 2px 6px;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        margin-left: 4px;
+    }
+
+    /* 订单项样式 */
+    .order-item {
+        background: white;
+        border-radius: 8px;
+        padding: 16px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .order-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .order-status {
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .status-unreceived {
+        background-color: #fef3c7;
+        color: #92400e;
+    }
+
+    .status-packing {
+        background-color: #dbeafe;
+        color: #1e40af;
+    }
+
+    .status-unpaid {
+        background-color: #fee2e2;
+        color: #991b1b;
+    }
+
+    .status-paid {
+        background-color: #dcfce7;
+        color: #166534;
+    }
+
+    .status-shipped {
+        background-color: #ede9fe;
+        color: #5b21b6;
+    }
+
+    .order-details {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+
+    .detail-label {
+        font-size: 0.75rem;
+        color: #6b7280;
+    }
+
+    .detail-value {
+        font-weight: 500;
+    }
+
+    .order-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+    }
+
+    .btn {
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+        background-color: #3b82f6;
+        color: white;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #2563eb;
+    }
+
+    .btn-danger {
+        background-color: #ef4444;
+        color: white;
+        border: none;
+    }
+
+    .btn-danger:hover {
+        background-color: #dc2626;
+    }
+
+    .btn-secondary {
+        background-color: #e5e7eb;
+        color: #4b5563;
+        border: none;
+    }
+
+    .btn-secondary:hover {
+        background-color: #d1d5db;
+    }
+
+    .modalss {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 500px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        animation: modalFadeIn 0.3s;
+
+    }
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .modal-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #999;
+    }
+
+    .input-group {
+        display: flex;
+        margin-bottom: 20px;
+    }
+
+    .input-field {
+        flex: 1;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px 0 0 4px;
+        font-size: 16px;
+        outline: none;
+    }
+
+    .add-btn {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 0 20px;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+        font-size: 18px;
+        transition: all 0.3s;
+    }
+
+    .add-btn:hover {
+        background-color: #45a049;
+    }
+
+    .tracking-list {
+        list-style: none;
+        max-height: 300px;
+        overflow-y: auto;
+        border: 1px solid #eee;
+        border-radius: 4px;
+    }
+
+    .tracking-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 15px;
+        border-bottom: 1px solid #eee;
+        transition: all 0.3s;
+    }
+
+    .tracking-item:last-child {
+        border-bottom: none;
+    }
+
+    .tracking-item:hover {
+        background-color: #f9f9f9;
+    }
+
+    .delete-btn {
+        background: none;
+        border: none;
+        color: #ff5252;
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.3s;
+    }
+
+    .delete-btn:hover {
+        color: #ff0000;
+        transform: scale(1.2);
+    }
+
+    .actions {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    .save-btn {
+        background-color: #2196F3;
+    }
+
+    .save-btn:hover {
+        background-color: #0b7dda;
+    }
+
+    .cancel-btn {
+        background-color: #f44336;
+    }
+
+    .cancel-btn:hover {
+        background-color: #d32f2f;
+    }
+
+
+
+
+</style>
+
+
+<div class="container mx-auto px-4 py-6" >
+    <!--<h1 class="text-2xl font-bold text-gray-800 mb-6">订单列表</h1>-->
+    <div class="panel-post">
+        <h2 class="page-header" style="font-size: 18px;">订单列表</h2>
+    </div>
+
+    <!-- 状态筛选标签 -->
+    <div class="flex overflow-x-auto pb-2 mb-6">
+        <div class="flex space-x-2" style='list-style-type:none;'>
+
+            <li><button class="status-btn active px-4 py-2 rounded-full bg-blue-600  text-gray-700" data-status="all" >
+                全部 <span class="count-badge"><?php echo $statusall; ?></span>
+            </button></li>
+            <li> <button class="status-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700" data-status="0">
+                未入库 <span class="count-badge"><?php echo $status0; ?></span>
+            </button></li>
+            <li> <button class="status-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700" data-status="1">
+                待打包 <span class="count-badge"><?php echo $status1; ?></span>
+            </button></li>
+            <li><button class="status-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700" data-status="2">
+                待付款 <span class="count-badge"><?php echo $status2; ?></span>
+            </button></li>
+            <li> <button class="status-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700" data-status="4">
+                已付款 <span class="count-badge"><?php echo $status4; ?></span>
+            </button></li>
+            <li><button class="status-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700" data-status="3">
+                已发货 <span class="count-badge"><?php echo $status3; ?></span>
+            </button></li>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- 订单列表 -->
+    <div class="order-list space-y-4">
+        <!-- 订单项将通过JS动态生成 -->
+    </div>
+
+
+
+    <div id="trackingModal" class="modalss">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">运单号管理</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="trackingInput" class="input-field" placeholder="请输入运单号">
+                <button id="addTrackingBtn" class="add-btn"><i class="fas fa-plus"></i></button>
+            </div>
+
+            <ul id="trackingList" class="tracking-list">
+                <!-- 运单号列表将在这里动态生成 -->
+            </ul>
+
+            <div class="actions">
+                <button id="cancelBtn" class="btn cancel-btn">取消</button>
+                <button id="saveBtn" class="btn save-btn">保存</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+    <script>
+        // 模拟订单数据
+        const orders = <?php echo $orderList; ?>;
+
+        // 全局变量，用来存当前操作的订单和运单号数据
+        let currentOrderId = null;
+        let trackingNumbers = [];
+        let newTrackingNumber = [];
+
+        // DOM元素
+        const statusButtons = document.querySelectorAll('.status-btn');
+        const orderList = document.querySelector('.order-list');
+        const baoguo = document.querySelector('.baoguo');
+        const detailModal = document.getElementById('detailModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalContent = document.getElementById('modalContent');
+        const trackingModal = document.getElementById('trackingModal');
+        const closeBtn = document.querySelector('.close-btn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const addTrackingBtn = document.getElementById('addTrackingBtn');
+        const trackingInput = document.getElementById('trackingInput');
+        const trackingList = document.getElementById('trackingList');
+        const saveBtn = document.getElementById('saveBtn');
+
+        // 渲染运单号列表
+        function renderTrackingList() {
+            trackingList.innerHTML = '';
+            trackingNumbers.forEach((number, index) => {
+                const li = document.createElement('li');
+                li.className = 'tracking-item';
+                li.innerHTML = `
+            <span>${number}</span>
+            <button class="delete-btn" data-index="${index}">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        `;
+                trackingList.appendChild(li);
+            });
+
+            // 添加删除事件监听
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    trackingNumbers.splice(index, 1);
+                    renderTrackingList();
+                });
+            });
+        }
+
+        // 关闭模态框
+        function closeModals() {
+            trackingModal.style.display = 'none';
+            trackingInput.value = '';
+            trackingNumbers = trackingNumbers.filter(item => !newTrackingNumber.includes(item));
+            newTrackingNumber = [];
+        }
+
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', () => {
+            renderOrderCounts();
+            renderOrders('all');
+
+            // 状态标签点击事件
+            statusButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    statusButtons.forEach(btn => btn.classList.remove('active', 'bg-blue-600', 'text-white'));
+                    button.classList.add('active', 'bg-blue-600', 'text-white');
+                    const status = button.dataset.status;
+                    renderOrders(status);
+                });
+            });
+
+            // ========== 只改了这里！把所有弹窗按钮的事件绑定移到这里，只绑定一次，不会再重复绑定了 ==========
+            // 关闭模态框
+            closeBtn.addEventListener('click', closeModals);
+            cancelBtn.addEventListener('click', closeModals);
+
+            // 点击模态框外部关闭
+            trackingModal.addEventListener('click', function(e) {
+                if (e.target === trackingModal) {
+                    closeModals();
+                }
+            });
+
+            // 添加运单号
+            addTrackingBtn.addEventListener('click', function() {
+                const number = trackingInput.value.trim();
+                if (number) {
+                    trackingNumbers.push(number);
+                    newTrackingNumber.push(number);
+                    trackingInput.value = '';
+                    renderTrackingList();
+                }
+            });
+
+            // 回车添加运单号
+            trackingInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addTrackingBtn.click();
+                }
+            });
+
+            // 保存运单号
+            saveBtn.addEventListener('click', function() {
+                console.log(trackingNumbers);
+                if (trackingNumbers == ''){
+                    layer.msg('请输入运单号');
+                    return;
+                }
+
+                var msg = '确定提交包裹？';
+                layer.msg(msg, {
+                    btn: ['确定', '取消']
+                    ,yes: function(index, layero){
+                        $.ajax({
+                            type:"POST",
+                            url:"dingdan/add",//提交数据接口
+                            data:{id:currentOrderId,ordersn:trackingNumbers},
+                            dataType:"JSON",
+                            success:function (res) {
+                                localStorage.setItem('trackingNumbers', JSON.stringify(trackingNumbers));
+                                newTrackingNumber = [];
+                                layer.msg(res.msg);
+                                location.reload();
+
+                            },
+                            error: function(ress) {
+                                layer.msg(ress.msg);
+                                return
+                            }
+                        });
+                    }
+                    ,btn2: function(index, layero){
+                        //按钮【按钮二】的回调
+                        layer.msg("已取消");
+                        location.reload();
+                        return false //开启该代码可禁止点击该按钮关闭
+
+                    }
+                });
+            });
+            // ==============================================================================================
+        });
+
+        // 渲染订单数量统计
+        function renderOrderCounts() {
+            const counts = {
+                all: orders.length,
+                0: orders.filter(o => o.status === 0).length,
+                1: orders.filter(o => o.status === 1).length,
+                2: orders.filter(o => o.status === 2).length,
+                4: orders.filter(o => o.status === 4).length,
+                3: orders.filter(o => o.status === 3).length
+            };
+
+
+            statusButtons.forEach(button => {
+                const status = button.dataset.status;
+
+                const countBadge = button.querySelector('.count-badge');
+                if (countBadge) {
+
+                    countBadge.textContent = counts[status];
+                }
+            });
+        }
+
+        // 渲染订单列表
+        function renderOrders(status) {
+
+            orderList.innerHTML = '';
+
+            const filteredOrders = status === 'all'
+                ? orders
+                : orders.filter(order => order.status == status);
+
+            if (filteredOrders.length === 0) {
+                orderList.innerHTML = '<div class="text-center py-8 text-gray-500">暂无订单</div>';
+                return;
+            }
+
+            filteredOrders.forEach(order => {
+                const orderItem = document.createElement('div');
+                orderItem.className = 'order-item';
+
+                // 状态显示文本
+                const statusTexts = {
+                    0: 'unreceived',
+                    1: 'packing',
+                    2: 'unpaid',
+                    3: 'paid',
+                    4: 'shipped'
+                };
+                const statusTextss = {
+                    0: '未入库',
+                    1: '待打包',
+                    2: '待付款',
+                    4: '已付款',
+                    3: '已发货'
+                };
+
+                orderItem.innerHTML = `
+            <div class="order-header">
+                <div>
+                    <span class="font-semibold">${order.out_trade_no}</span>
+                    <span class="text-sm text-gray-500 ml-2">${order.time}</span>
+                </div>
+                <span class="order-status status-${statusTexts[order.status]}">${statusTextss[order.status]}</span>
+            </div>
+            <div class="order-details">
+                <div>
+                    <div class="detail-label">接运单号</div>
+                    <div class="detail-value">${order.ordersn}</div>
+                </div>
+              <div>
+                    <div class="detail-label">总金额</div>
+                    <div class="detail-value">¥${order.money}</div>
+                </div>
+            </div>
+            <div class="order-actions">
+                ${order.status === 0 ? '<button class="btn btn-danger cancel-btn">取消订单</button>' : ''}
+                 ${order.status === 0 || order.status === 1 ? '<button   class="btn btn-success addd-btn">添加包裹</button>' : ''}
+                ${order.status === 1 ? '<button class="btn btn-primary apply-packing-btn">申请打包</button>' : ''}
+
+               <a href="http://rixiang.com/index/details?out_trade_no=${order.out_trade_no}" class="btn btn-secondary">查看订单</a>
+            </div>
+        `;
+
+                // 添加事件监听
+                const cancelBtn = orderItem.querySelector('.cancel-btn');
+                if (cancelBtn) {
+                    cancelBtn.addEventListener('click', () => cancelOrder(order.id));
+                }
+                // 添加事件监听
+                const addBtn = orderItem.querySelector('.addd-btn');
+                if (addBtn) {
+                    addBtn.addEventListener('click', () => addOrder(order.id));
+                }
+
+                const applyPackingBtn = orderItem.querySelector('.apply-packing-btn');
+                if (applyPackingBtn) {
+                    applyPackingBtn.addEventListener('click', () => applyPacking(order.id));
+                }
+
+                orderList.appendChild(orderItem);
+            });
+        }
+
+
+        function addOrder(orderId) {
+            currentOrderId = orderId;
+            trackingModal.style.display = 'flex';
+            // 从localStorage加载保存的运单号
+            trackingNumbers = JSON.parse(localStorage.getItem('trackingNumbers')) || [];
+
+            // 初始化渲染
+            renderTrackingList();
+        }
+        // 取消订单
+        function cancelOrder(orderId) {
+            if (confirm('确定要取消此订单吗？')) {
+                $.ajax({
+                    type:"GET",
+                    url:"details/cancel",//提交数据接口
+                    data:{id:orderId},
+                    dataType:"JSON",
+                    success:function (res) {
+                        layer.msg(res.msg);
+                        location.reload();
+                    }
+                });
+            }
+        }
+
+        // 添加订单
+        function addOrders(orderId) {
+            $.ajax({
+                type:"GET",
+                url:"details/cancel",
+                data:{id:orderId},
+                dataType:"JSON",
+                success:function (res) {
+                    layer.msg(res.msg);
+                    location.reload();
+                }
+            });
+
+        }
+
+
+
+        // 申请打包
+        function applyPacking(orderid) {
+            $.ajax({
+                type:"POST",
+                url:"dingdan/send",
+                data:{orderid:orderid},
+                dataType:"JSON",
+                success:function (res) {
+                    layer.msg(res.msg);
+                }
+            });
+        }
+
+
+
+
+
+    </script>
+        </main>
+
+        <footer class="footer" style="clear:both">
+            <p class="copyright">Copyright&nbsp;©&nbsp;<?php echo date("Y"); ?> <?php echo htmlentities($site['name'] ?? ''); ?> All Rights Reserved <a href="https://beian.miit.gov.cn" target="_blank"><?php echo htmlentities($site['beian'] ?? ''); ?></a></p>
+        </footer>
+
+        <script src="/assets/js/require<?php echo \think\Config::get('app_debug')?'':'.min'; ?>.js" data-main="/assets/js/require-frontend<?php echo \think\Config::get('app_debug')?'':'.min'; ?>.js?v=<?php echo htmlentities($site['version'] ?? ''); ?>"></script>
+
+    </body>
+
+</html>

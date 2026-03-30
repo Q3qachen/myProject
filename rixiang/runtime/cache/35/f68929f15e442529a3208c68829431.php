@@ -1,0 +1,4 @@
+<?php
+//000000000000
+ exit();?>
+a:1:{i:0;a:27:{s:2:"id";i:22;s:4:"type";s:4:"link";s:8:"model_id";i:1;s:9:"parent_id";i:0;s:4:"name";s:6:"首页";s:5:"image";s:0:"";s:4:"flag";s:0:"";s:8:"seotitle";s:0:"";s:8:"keywords";s:0:"";s:11:"description";s:0:"";s:7:"diyname";s:5:"index";s:7:"outlink";s:1:"/";s:8:"linktype";s:0:"";s:6:"linkid";i:0;s:5:"items";i:0;s:5:"weigh";i:999;s:10:"channeltpl";s:12:"channel.html";s:7:"listtpl";s:9:"list.html";s:7:"showtpl";s:9:"show.html";s:8:"pagesize";i:10;s:3:"vip";i:0;s:8:"listtype";i:0;s:12:"iscontribute";i:0;s:5:"isnav";i:1;s:10:"createtime";i:1553330375;s:10:"updatetime";i:1731918916;s:6:"status";s:6:"normal";}}

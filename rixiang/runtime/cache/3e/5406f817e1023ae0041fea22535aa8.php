@@ -1,0 +1,4 @@
+<?php
+//000000000000
+ exit();?>
+a:2:{i:0;a:14:{s:2:"id";i:3;s:4:"type";s:9:"焦点图";s:4:"name";s:10:"indexfocus";s:5:"title";s:24:"PC首页焦点图标题3";s:5:"image";s:54:"/uploads/20241202/0c42cfdb214e8546e0e4a5729e604e49.png";s:3:"url";s:1:"/";s:7:"content";s:0:"";s:8:"parsetpl";i:0;s:5:"weigh";i:3;s:10:"createtime";i:1553606219;s:10:"updatetime";i:1733109251;s:9:"begintime";N;s:7:"endtime";N;s:6:"status";s:6:"normal";}i:1;a:14:{s:2:"id";i:1;s:4:"type";s:9:"焦点图";s:4:"name";s:10:"indexfocus";s:5:"title";s:24:"PC首页焦点图标题1";s:5:"image";s:54:"/uploads/20241202/0c42cfdb214e8546e0e4a5729e604e49.png";s:3:"url";s:1:"/";s:7:"content";s:0:"";s:8:"parsetpl";i:0;s:5:"weigh";i:1;s:10:"createtime";i:1553606219;s:10:"updatetime";i:1733109231;s:9:"begintime";N;s:7:"endtime";N;s:6:"status";s:6:"normal";}}

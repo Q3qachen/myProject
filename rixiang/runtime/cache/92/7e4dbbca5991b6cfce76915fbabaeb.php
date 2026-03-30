@@ -1,0 +1,4 @@
+<?php
+//000000000000
+ exit();?>
+a:1:{i:0;a:32:{s:2:"id";i:111;s:7:"user_id";i:0;s:10:"channel_id";i:29;s:11:"channel_ids";s:0:"";s:8:"model_id";i:1;s:11:"special_ids";s:0:"";s:8:"admin_id";i:1;s:5:"title";s:48:"发货前，请务必先阅读本说明！！！";s:4:"flag";s:0:"";s:5:"style";s:7:"#0099cc";s:5:"image";s:0:"";s:6:"images";s:0:"";s:8:"seotitle";s:0:"";s:8:"keywords";s:0:"";s:11:"description";s:0:"";s:4:"tags";s:0:"";s:5:"price";s:4:"0.00";s:7:"outlink";s:0:"";s:5:"weigh";i:0;s:5:"views";i:105;s:8:"comments";i:0;s:5:"likes";i:0;s:8:"dislikes";i:0;s:7:"diyname";s:48:"fa-huo-qian-qing-wu-bi-xian-yue-du-ben-shuo-ming";s:7:"isguest";i:10;s:9:"iscomment";i:10;s:10:"createtime";i:1733388671;s:10:"updatetime";i:1774595405;s:11:"publishtime";i:1733388525;s:10:"deletetime";N;s:4:"memo";s:0:"";s:6:"status";s:6:"normal";}}
