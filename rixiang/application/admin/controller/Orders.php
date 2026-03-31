@@ -324,19 +324,19 @@ class Orders extends Backend
              }  
              //发货通知
             if($params['status']==3){
-                $templateId = 'Vlj5D40rN2Vp85YtsBvg_QfOjtatoR-LshHXnCeBAtM'; // 你的模板ID
-                $openid = $user['openid']; // 用户的OpenID
-                $url = 'http://cons.lncbe.com/index/dingdan'; // 点击跳转的URL（可选）
-                $data = [
-                   
-                    "character_string1" => ["value" => $list['out_trade_no']],
-                    "character_string8" => ["value" => $list['wnumber']],
-                    "time3" => ["value" => date('Y-m-d H:i:s',time())]
-                   
-                ];
-                 
-                $accessToken = $this->getAccessToken('wx12a0a1b2ba3d4c8f', 'c9bf3f30d56bcdf16ef83ffa724c911a'); // 获取Access Token
-                $result = $this->sendTemplateMessage($accessToken, $templateId, $openid, $url, $data); // 发送模板消息
+//                $templateId = 'Vlj5D40rN2Vp85YtsBvg_QfOjtatoR-LshHXnCeBAtM'; // 你的模板ID
+//                $openid = $user['openid']; // 用户的OpenID
+//                $url = 'http://cons.lncbe.com/index/dingdan'; // 点击跳转的URL（可选）
+//                $data = [
+//
+//                    "character_string1" => ["value" => $list['out_trade_no']],
+//                    "character_string8" => ["value" => $list['wnumber']],
+//                    "time3" => ["value" => date('Y-m-d H:i:s',time())]
+//
+//                ];
+//
+//                $accessToken = $this->getAccessToken('wx12a0a1b2ba3d4c8f', 'c9bf3f30d56bcdf16ef83ffa724c911a'); // 获取Access Token
+//                $result = $this->sendTemplateMessage($accessToken, $templateId, $openid, $url, $data); // 发送模板消息
                 //  print_r($result);
             }
             
