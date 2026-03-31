@@ -24,13 +24,7 @@ class Scode extends Backend
             $params = $this->request->post();
             $ordersn = $params['ordersn'];
             $relus = db::name('orders')->where('ordersn', $ordersn)->where('status', 0)->find();
-            if (!$relus) {
-                return $this->returnApiError('该运单号不存在或不是未入库状态', 0);
-            }
-            $user = db::name('user')->where('id', $relus['userid'])->find();
             if ($relus) {
-
-
 //               $templateId = 'pbofWM8gwm10znqfZxkqSSRZHad5s5U6PNqvPPIA9l0'; // 你的模板ID
 //                $openid = $user['openid']; // 用户的OpenID
 //                $url = 'http://cons.lncbe.com/index/dingdan'; // 点击跳转的URL（可选）
@@ -46,14 +40,9 @@ class Scode extends Backend
 //                // print_r($result);die;
                 db::name('orders')->where('ordersn', $ordersn)->update(['status' => 1]);
                 return $this->returnApiError('入库成功', 1);
-
-
             } else {
                 return $this->returnApiError('该运单号不存在或不是未入库状态', 0);
-
             }
-
-
         }
         $order = db::name('orders')->where('status', 1)->order('id desc')->limit(15)->select();
         $this->view->assign('order', $order);
