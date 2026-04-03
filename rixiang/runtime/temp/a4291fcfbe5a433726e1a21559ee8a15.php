@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:89:"C:\achen\phpstudy\WWW\myProject\rixiang\public/../application/admin\view\scode\index.html";i:1774858886;s:82:"C:\achen\phpstudy\WWW\myProject\rixiang\application\admin\view\layout\default.html";i:1774858886;s:79:"C:\achen\phpstudy\WWW\myProject\rixiang\application\admin\view\common\meta.html";i:1774858886;s:81:"C:\achen\phpstudy\WWW\myProject\rixiang\application\admin\view\common\script.html";i:1774858886;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:89:"C:\achen\phpstudy\WWW\myProject\rixiang\public/../application/admin\view\scode\index.html";i:1774922776;s:82:"C:\achen\phpstudy\WWW\myProject\rixiang\application\admin\view\layout\default.html";i:1774858886;s:79:"C:\achen\phpstudy\WWW\myProject\rixiang\application\admin\view\common\meta.html";i:1774858886;s:81:"C:\achen\phpstudy\WWW\myProject\rixiang\application\admin\view\common\script.html";i:1774858886;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -59,301 +59,274 @@
                             <!-- END RIBBON -->
                             <?php endif; ?>
                             <div class="content">
-                                 <style type="text/css">
-        #myTabs li p {
-            padding-top: 5px;
-            margin-bottom: 0px;
-            font-weight: 600;
-            font-size: 15px;
-        }
-        #myTabs li a{
-            height: 128px;
-        }
-        .cheek {
-            width: 100%;
-            /*height: 120px;*/
-            overflow: auto;
-            border: 1px solid #DBDBDB;
-            border-radius: 10px;
-            padding: 10px 20px;
-            /*margin-bottom: 20px;*/
-           
-        }
-        .cheek:hover {
-            background-color: #B1EBE6;
-            border-color: #33CABB;
-        }
-        .pro-img {
-            padding: 10px 0;
-            float: left;
-            width: 20%;
-            /*background-color: #33CABB;*/
-        }
-        .pro-img img {
-            width: 70px;
-            /*width: 100%;*/
-        }
-        .pro-content {
-            float: right;
-            padding-left: 30px;
-            width: 80%;
-        }
-        .describe {
-            height:20px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display:-webkit-box;
-            -webkit-box-orient:vertical;
-            -webkit-line-clamp:1;
-        }
-        .name {
-            overflow: hidden;
-            text-overflow: ellipsis;
-          
-        }
-        .elem {
-          display: none;
-        }
-     
+                                <style type="text/css">
 
-  
+    #myTabs li p {
+        padding-top: 5px;
+        margin-bottom: 0px;
+        font-weight: 600;
+        font-size: 15px;
+    }
+
     .question {
-      position: relative;
-      padding: 10px 0;
-    }
-    .question:first-of-type {
-      padding-top: 0;
-    }
-    .question:last-of-type {
-      padding-bottom: 0;
-    }
-    .question label {
-      transform-origin: left center;
-      color: #4E73DF;
-      font-weight: 100;
-      /*letter-spacing: 0.01em;*/
-      font-size: 13px;
-      box-sizing: border-box;
-      padding: 8px 15px;
-      display: block;
-      position: absolute;
-      margin-top: -40px;
-      z-index: 2;
-      pointer-events: none;
-      font-weight: 400;
-    }
-    .question small{
-      font-size: 13px;
-      box-sizing: border-box;
-      padding: 8px 15px;
-      display: block;
-      position: absolute;
-      margin-top: -40px;
-      margin-left: 80px;
-      z-index: 2;
-      color:#0c8adf;
-      margin-left:200px;
-    }
-    .question input[type="text"] {
-      appearance: none;
-      background-color: none;
-      border: 1px solid #4E73DF;
-      line-height: 0;
-      font-size: 15px;
-      width: 90%;
-      display: block;
-      box-sizing: border-box;
-      padding: 10px 15px;
-      border-radius: 60px;
-      color: #4E73DF;
-      font-weight: 100;
-      letter-spacing: 0.01em;
-      position: relative;
-      z-index: 1;
-       
-    }
-    .question input[type="text"]:focus {
-      outline: none;
-         background-image:linear-gradient( 135deg, #66B3FF 10%, #0066CC 100%) !important;
-      color: white;
-      margin-top: 30px;
-    }
-    .question input[type="text"]:valid {
-      margin-top: 30px;
-    }
-    .question input[type="text"]:focus ~ label {
-      -moz-transform: translate(0, -35px);
-      -ms-transform: translate(0, -35px);
-      -webkit-transform: translate(0, -35px);
-      transform: translate(0, -35px);
-    }
-    .question input[type="text"]:valid ~ label {
-      /*text-transform: uppercase;*/
-      /*font-style: italic;*/
-     
-      -moz-transform: translate(0px, -35px) scale(1);
-      -ms-transform: translate(0px, -35px) scale(1);
-      -webkit-transform: translate(0px, -35px) scale(1);
-      transform: translate(0px, -35px) scale(1);
-    }
-    
-     .sections{
-        float:right;
-        width:94%; 
-        height:600px;
         position: relative;
-    
+        padding: 10px 0;
     }
-     .section{
-        width: 80%;
-        height: 550px;
+
+    .question label {
+        transform-origin: left center;
+        color: #4E73DF;
+        font-size: 13px;
+        padding: 8px 15px;
+        display: block;
         position: absolute;
-    	top: 0;
-    	left: 0;
-    	right: 0;
-    	bottom: 0;
-    	margin: auto;
-       }
-        
-    .back{
-         /*background-image:linear-gradient( 135deg, #66B3FF 10%, #0066CC 100%) !important;*/
+        margin-top: -40px;
+        z-index: 2;
     }
-    .diqu{
-      border: 1px solid #4E73DF;
-      line-height: 0;
-      box-sizing: border-box;
-      border-radius: 30px;
-      color: #4E73DF;
-      
+
+    .question input[type="text"] {
+        border: 1px solid #4E73DF;
+        font-size: 15px;
+        width: 100%;
+        padding: 10px 45px 10px 15px;
+        border-radius: 60px;
+        color: #4E73DF;
     }
-    
-    .liebiao{
-      margin-top:50px;
-      border: 1px solid #4E73DF;
-      line-height: 0;
-      font-size: 15px;
-      display: block;
-      box-sizing: border-box;
-      padding: 10px 15px;
-      border-radius: 30px;
-      color: #4E73DF;
-      font-weight: 100;
+
+    .question input[type="text"]:focus {
+        outline: none;
+        background-image:linear-gradient(135deg,#66B3FF 10%,#0066CC 100%);
+        color:white;
     }
-         
-         
-      
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-        }
-        .modal-content {
-            width: 80%;
-            height: 80%;
-            margin: auto;
-            background: white;
-        }
-  
-    </style>
+
+    /* 相机按钮 */
+    .scan-btn{
+        position:absolute;
+        right:15px;
+        top:12px;
+        font-size:20px;
+        color:#4E73DF;
+        cursor:pointer;
+    }
+
+    /* 扫码弹窗 */
+    .modal {
+        display:none;
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,0.6);
+        z-index:9999;
+    }
+
+    .modal-content{
+        width:90%;
+        max-width:500px;
+        height:400px;
+        margin:80px auto;
+        background:#fff;
+        border-radius:10px;
+        padding:10px;
+    }
+
+</style>
 
 
 <div class="panel panel-default panel-intro">
+
     <?php echo build_heading(); ?>
-    <div class="panel-heading" style='background-image:linear-gradient( 135deg, #66B3FF 10%, #0066CC 100%) !important;'>
+
+    <div class="panel-heading" style='background-image:linear-gradient(135deg,#66B3FF 10%,#0066CC 100%) !important;'>
         <div class="panel-lead" style='color:#0066CC'><em>商品入库</em></div>
     </div>
+
     <div class="panel-body">
 
-        <form id="myInput" action="scode/index" class="form-horizontal" role="form" data-toggle="validator" method="POST"
-             >
+        <form id="myInput" action="scode/index" class="form-horizontal" role="form" method="POST">
+
             <div class="form-group">
-            </div>
-            
-           <div class="form-group">
-                <label class="control-label col-xs-12 col-sm-2"><?php echo __(''); ?></label>
+
+                <label class="control-label col-xs-12 col-sm-2"></label>
+
                 <div class="col-xs-12 col-sm-8 question">
-                    <input id="ordersn"  name="ordersn" type="text" required>
-                     <label>输入接货运单号</label>
+
+                    <div style="position:relative">
+
+                        <input id="ordersn" name="ordersn" type="text" placeholder="输入接货运单号" required>
+
+                        <!-- 相机按钮 -->
+                        <i id="scanBtn" class="fa fa-camera scan-btn"></i>
+
+                    </div>
+
+<!--                    <label>输入接货运单号</label>-->
+
                 </div>
+
             </div>
-             <input type="submit" value="Submit" style="display: none;" />
+
+            <input type="submit" value="Submit" style="display:none;"/>
+
         </form>
-     
-         <label class="control-label col-xs-12 col-sm-2"><?php echo __(''); ?></label>
-          <div class="col-xs-12 col-sm-8 question">
-                                <div class="col-xs-11 liebiao">
-                                    <!-- 刷新页面的重点-->
-                                  <div id="toolbar" class="toolbar hidden">
-                                         <a href="javascript:;" class="btn btn-primary btn-refresh"><i class="fa fa-refresh"></i></a>
-                                    </div>
-                                     <!-- 刷新页面的重点-->
-                                 <table id="table" class="table table-striped table-bordered table-hover table-nowrap"
-                           data-operate-edit="<?php echo $auth->check('test/edit'); ?>" 
-                           data-operate-del="<?php echo $auth->check('test/del'); ?>" 
-                           width="100%">
-                    </table>
-                                  
 
-                              </div>
-                        </div>
-                        <div style="margin-bottom:20px"></div>
+
+
+        <label class="control-label col-xs-12 col-sm-2"></label>
+
+        <div class="col-xs-12 col-sm-8 question">
+
+            <div class="col-xs-11 liebiao">
+
+                <div id="toolbar" class="toolbar hidden">
+                    <a href="javascript:;" class="btn btn-primary btn-refresh">
+                        <i class="fa fa-refresh"></i>
+                    </a>
+                </div>
+
+                <table id="table"
+                       class="table table-striped table-bordered table-hover table-nowrap"
+                       data-operate-edit="<?php echo $auth->check('test/edit'); ?>"
+                       data-operate-del="<?php echo $auth->check('test/del'); ?>"
+                       width="100%">
+                </table>
+
+            </div>
+
+        </div>
+
+        <div style="margin-bottom:20px"></div>
+
     </div>
-
 </div>
 
- <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
- <script src="/assets/libs/fastadmin-layer/src/layer.js"></script>
+
+<!-- 扫码弹窗 -->
+<div id="scanModal" class="modal">
+    <div class="modal-content">
+        <div id="reader" style="width:100%;height:100%"></div>
+    </div>
+</div>
+
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+<script src="/assets/libs/fastadmin-layer/src/layer.js"></script>
+
+<!-- 扫码库 -->
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+
 <script>
 
+    $(document).ready(function(){
 
+        // 如果不是手机就隐藏扫码按钮
+        if(!isMobile()){
+            $("#scanBtn").hide();
+        }
 
-$(document).ready(function() {
-  $('#myInput').keydown(function(e) {
-    if(e.which == 13) { // 检查按键是否是回车键
-      e.preventDefault(); // 阻止表单默认提交
-      var inputValue = $("#ordersn").val(); // 获取输入值
-      var formData = { 'ordersn': inputValue }; // 创建表单数据对象
- 
-      // 使用Ajax提交数据
-      $.ajax({
-        url: 'scode/index', // 服务器端点
-        type: 'POST',
-        data: formData,
-        dataType:"JSON",
-        success: function(response) {
-          // 成功回调函数
-        
-          layer.msg(response.msg);
-          
-          setTimeout(function() {
-             window.parent.location.reload();
-             }, 2500);
-        
-           
-        },
-      
-      });
-    }
-  });
-});
+        /* 回车提交 (保留你原逻辑) */
+        $('#myInput').keydown(function(e){
 
-//光标自动进入input
-document.addEventListener('DOMContentLoaded', function() {
-            const input = document.getElementById('ordersn');
-            input.focus();
-            
-            // 可选：设置光标位置（如果需要）
-            // input.setSelectionRange(0, 0);
+            if(e.which == 13){
+
+                e.preventDefault();
+
+                var inputValue = $("#ordersn").val();
+
+                var formData = { 'ordersn': inputValue };
+
+                $.ajax({
+
+                    url:'scode/index',
+                    type:'POST',
+                    data:formData,
+                    dataType:"JSON",
+
+                    success:function(response){
+
+                        layer.msg(response.msg);
+
+                        setTimeout(function(){
+
+                            window.parent.location.reload();
+
+                        },2500);
+
+                    }
+
+                });
+
+            }
+
         });
 
 
+        /* 自动聚焦 */
+        $("#ordersn").focus();
 
-  
-      
+    });
+
+    function isMobile(){
+        return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+    }
+
+    $(document).ready(function(){
+
+
+
+    });
+
+
+    /* 手机扫码 */
+
+    let html5QrCode;
+
+    $("#scanBtn").click(function(){
+
+        $("#scanModal").show();
+
+        html5QrCode = new Html5Qrcode("reader");
+
+        Html5Qrcode.getCameras().then(devices => {
+
+            if(devices && devices.length){
+
+                let cameraId = devices[0].id;
+
+                html5QrCode.start(
+
+                    cameraId,
+
+                    {fps:10, qrbox:250},
+
+                    (decodedText)=>{
+
+                        $("#ordersn").val(decodedText);
+
+                        html5QrCode.stop();
+
+                        $("#scanModal").hide();
+
+                        layer.msg("扫码成功");
+
+                    }
+
+                );
+
+            }
+
+        }).catch(err=>{
+
+            layer.msg("无法调用摄像头");
+
+        });
+
+    });
+
 
 </script>
-
                             </div>
                         </div>
                     </div>
